@@ -1,11 +1,18 @@
-import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { HomeComponent } from './components/home/home.component';
+import { MonthComponent } from './components/month/month.component';
+
 const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
-    path: '',
+    path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'month',
+    component: MonthComponent
   }
 ];
 

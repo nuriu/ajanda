@@ -1,7 +1,8 @@
 {
   "PAGES": {
       "HOME": {
-          "TITLE": "App works !"
+        "SELECT_FILE": "Select a database file:"
       }
-  }
+  },
+  "LOAD": "Load"
 }

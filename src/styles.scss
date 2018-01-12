@@ -1,7 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/spectre.css/src/spectre.scss";
+@import "../node_modules/spectre.css/src/spectre-icons.scss";
+@import "../node_modules/spectre.css/src/spectre-exp.scss";
+
 html, body {
   margin: 0;
   padding: 0;
 
   height: 100%;
+  width: 100%;
 }

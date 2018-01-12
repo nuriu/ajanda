@@ -1,7 +1,8 @@
 {
   "PAGES": {
       "HOME": {
-          "TITLE": "Uygulama çalışıyor!"
+          "SELECTFILE": "Bir veritabanı dosyası seçin:"
       }
-  }
+  },
+  "LOAD": "Yükle"
 }
