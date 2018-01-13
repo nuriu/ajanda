@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import * as fs from 'fs';
 import * as SQL from 'sql.js';
+
 @Injectable()
 export class DataService {
   private fileBuffer: Buffer;
