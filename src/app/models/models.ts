@@ -33,3 +33,9 @@ export class Task {
     Object.assign(this, init);
   }
 }
+
+export class DataFile {
+  LABELS: Array<Label>;
+  EVENTS: Array<Event>;
+  TASKS: Array<Task>;
+}
