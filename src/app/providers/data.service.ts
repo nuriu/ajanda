@@ -31,11 +31,42 @@ export class DataService {
   }
 
   private createTablesIfNotExists() {
-    const cmd = `
-    CREATE TABLE IF NOT EXISTS hello (a int, b char);
+    const tbl_labels = `
+    CREATE TABLE IF NOT EXISTS LABELS (
+      Id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+      Name TEXT NOT NULL UNIQUE,
+      ColorCode	TEXT NOT NULL,
+      Description	TEXT
+    );
     `;
 
-    this.db.run(cmd);
+    const tbl_events = `
+    CREATE TABLE IF NOT EXISTS EVENTS (
+      Id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+      Title TEXT NOT NULL,
+      StartDate TEXT,
+      FinishDate TEXT,
+      Label_Id INTEGER,
+      FOREIGN KEY(Label_Id) REFERENCES LABELS(Id)
+    );
+    `;
+
+    const tbl_tasks = `
+    CREATE TABLE IF NOT EXISTS TASKS (
+      Id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+      Name TEXT NOT NULL,
+      Description	TEXT,
+      FinishDate TEXT,
+      RepeatDays INTEGER,
+      Label_Id INTEGER,
+      FOREIGN KEY(Label_Id) REFERENCES LABELS(Id)
+    );
+    `;
+
+    this.db.run(tbl_labels);
+    this.db.run(tbl_events);
+    this.db.run(tbl_tasks);
+
     this.overwriteDatabase();
   }
 
