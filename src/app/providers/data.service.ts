@@ -45,10 +45,8 @@ export class DataService {
     CREATE TABLE IF NOT EXISTS EVENTS (
       Id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
       Title TEXT NOT NULL,
-      StartDate TEXT,
-      FinishDate TEXT,
-      Label_Id INTEGER,
-      FOREIGN KEY(Label_Id) REFERENCES LABELS(Id)
+      StartDate TEXT NOT NULL,
+      FinishDate TEXT NOT NULL
     );
     `;
 
@@ -57,16 +55,34 @@ export class DataService {
       Id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
       Name TEXT NOT NULL,
       Description	TEXT,
-      FinishDate TEXT,
-      RepeatDays INTEGER,
-      Label_Id INTEGER,
-      FOREIGN KEY(Label_Id) REFERENCES LABELS(Id)
+      FinishDate TEXT NOT NULL,
+      RepeatDays INTEGER
     );
+    `;
+
+    const tbl_eventslabels = `
+    CREATE TABLE IF NOT EXISTS EVENTSLABELS (
+      Event_Id INTEGER NOT NULL,
+      Label_Id INTEGER NOT NULL,
+      FOREIGN KEY(Event_Id) REFERENCES EVENTS(Id)
+      FOREIGN KEY(Label_Id) REFERENCES LABELS(Id)
+    )
+    `;
+
+    const tbl_taskslabels = `
+    CREATE TABLE IF NOT EXISTS TASKSLABELS (
+      Task_Id INTEGER NOT NULL,
+      Label_Id INTEGER NOT NULL,
+      FOREIGN KEY(Task_Id) REFERENCES TASKS(Id)
+      FOREIGN KEY(Label_Id) REFERENCES LABELS(Id)
+    )
     `;
 
     this.db.run(tbl_labels);
     this.db.run(tbl_events);
+    this.db.run(tbl_eventslabels);
     this.db.run(tbl_tasks);
+    this.db.run(tbl_taskslabels);
 
     this.overwriteDatabase();
   }
