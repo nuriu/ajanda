@@ -7,12 +7,10 @@ serve = args.some(val => val === '--serve');
 import * as url from 'url';
 
 if (serve) {
-  require('electron-reload')(__dirname, {
-  });
+  require('electron-reload')(__dirname, {});
 }
 
 function createWindow() {
-
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
 
@@ -25,11 +23,13 @@ function createWindow() {
   });
 
   // and load the index.html of the app.
-  win.loadURL(url.format({
-    protocol: 'file:',
-    pathname: path.join(__dirname, '/index.html'),
-    slashes:  true
-  }));
+  win.loadURL(
+    url.format({
+      protocol: 'file:',
+      pathname: path.join(__dirname, '/index.html'),
+      slashes: true
+    })
+  );
 
   // Open the DevTools.
   if (serve) {
@@ -46,11 +46,15 @@ function createWindow() {
 }
 
 try {
-
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
   app.on('ready', createWindow);
+
+  // Disable menubar when window created.
+  app.on('browser-window-created', function(e, window) {
+    window.setMenu(null);
+  });
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
@@ -60,7 +64,6 @@ try {
       app.quit();
     }
   });
-
   app.on('activate', () => {
     // On OS X it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
@@ -68,7 +71,6 @@ try {
       createWindow();
     }
   });
-
 } catch (e) {
   // Catch Error
   // throw e;
