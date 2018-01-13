@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
     if (file !== undefined && file !== null) {
       // load file data to service
-      this.db.loadDatabase(file);
+      this.db.loadDataFile(file);
       // go to month view
       this.router.navigate(['./month']);
     } else {

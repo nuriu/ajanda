@@ -3,33 +3,52 @@ import { Router } from '@angular/router';
 
 import * as fs from 'fs';
 import * as moment from 'moment';
+import * as uuidv5 from 'uuid/v5';
+
+import { JsonService } from './json.service';
 
 import { Label } from '../models/models';
 import { Event } from '../models/models';
 import { Task } from '../models/models';
+import { DataFile } from '../models/models'
+
+const DOMAIN = 'com.nuriuzunoglu.ajanda';
 
 @Injectable()
 export class DataService {
   private fileBuffer: Buffer;
-  private databaseFile: File;
-  private db: string;
+  private dataFile: File;
+  private db: DataFile;
 
-  private labels: Array<Label>;
-  private events: Array<Event>;
-  private tasks: Array<Task>;
-
-  constructor(private router: Router) {}
+  constructor(private router: Router, private js: JsonService) { }
 
   /**
-   * Loads sqlite database from given file object.
-   * @param database Database file object.
+   * Loads data file from given file object.
+   * @param data Data file object.
    */
-  loadDatabase(database: File) {
-    this.databaseFile = database;
+  loadDataFile(data: File) {
+    this.dataFile = data;
 
-    console.log(this.db);
-    // this.createTablesIfNotExists();
-    // console.log(this.getLabels());
+    const jsonString = fs.readFileSync(this.dataFile.path, 'utf8');
+
+    if (this.js.isValid(jsonString)) {
+      this.db = JSON.parse(jsonString);
+
+      console.log(this.db);
+    } else {
+      this.router.navigate(['./home']);
+    }
+  }
+
+  /**
+   * Creates base data structure.
+   */
+  newDatafile() {
+    this.db = {
+      LABELS: [],
+      EVENTS: [],
+      TASKS: []
+    };
   }
 
   /**
@@ -37,8 +56,8 @@ export class DataService {
    * Otherwise redirects to load page.
    */
   getDatabasePath() {
-    if (this.databaseFile !== null && this.databaseFile !== undefined) {
-      return this.databaseFile.path;
+    if (this.dataFile !== null && this.dataFile !== undefined) {
+      return this.dataFile.path;
     } else {
       this.router.navigate(['./home']);
     }
@@ -49,8 +68,10 @@ export class DataService {
    * If file object not exists; redirects to load page.
    */
   overwriteDataFile() {
-    if (this.databaseFile !== null && this.databaseFile !== undefined) {
-
+    if (this.dataFile !== null && this.dataFile !== undefined) {
+      fs.writeFile(this.dataFile.path, JSON.stringify(this.db), err => {
+        console.error(err);
+      });
     } else {
       this.router.navigate(['./home']);
     }
@@ -60,73 +81,20 @@ export class DataService {
    * Returns label records.
    */
   getLabels(): Array<Label> {
-    if (!this.labels) {
-      this.loadLabels();
-    }
-
-    return this.labels;
+    return this.db.LABELS;
   }
 
   /**
    * Returns event records.
    */
   getEvents(): Array<Event> {
-    if (!this.events) {
-      this.loadEvents();
-    }
-
-    return this.events;
+    return this.db.EVENTS;
   }
 
   /**
    * Returns task records.
    */
   getTasks(): Array<Task> {
-    if (!this.tasks) {
-      this.loadTasks();
-    }
-
-    return this.tasks;
-  }
-
-  /**
-   * Loads label records from database to service.
-   */
-  private loadLabels() {
-    if (!this.labels) {
-      this.labels = new Array<Label>();
-    }
-
-    const data = null;
-
-    data.forEach(element => {
-      this.labels.push();
-    });
-  }
-
-  /**
-   * Loads event records from data file to service.
-   */
-  private loadEvents() {
-    if (!this.events) {
-      this.events = new Array<Event>();
-    }
-
-    const data = null;
-
-    data.forEach(element => {});
-  }
-
-  /**
-   * Loads task records from data file to service.
-   */
-  private loadTasks() {
-    if (!this.tasks) {
-      this.tasks = new Array<Task>();
-    }
-
-    const data = null;
-
-    data.forEach(element => {});
+    return this.db.TASKS;
   }
 }

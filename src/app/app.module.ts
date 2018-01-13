@@ -15,6 +15,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ElectronService } from './providers/electron.service';
 import { DataService } from './providers/data.service';
+import { JsonService } from './providers/json.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -40,7 +41,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [ElectronService, DataService],
+  providers: [ElectronService, JsonService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
