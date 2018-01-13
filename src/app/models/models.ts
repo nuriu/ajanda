@@ -1,23 +1,35 @@
-export interface Label {
-  Id: Number;
-  Name: String;
-  ColorCode: String;
-  Description?: String;
+export class Label {
+  Id: number;
+  Name: string;
+  ColorCode: string;
+  Description?: string;
+
+  public constructor(init?: Partial<Label>) {
+    Object.assign(this, init);
+  }
 }
 
-export interface Event {
-  Id: Number;
-  Title: String;
+export class Event {
+  Id: number;
+  Title: string;
   StartDate: Date;
   FinishDate: Date;
   Labels?: Array<Label>;
+
+  public constructor(init?: Partial<Event>) {
+    Object.assign(this, init);
+  }
 }
 
-export interface Task {
-  Id: Number;
-  Name: String;
+export class Task {
+  Id: number;
+  Name: string;
   FinishDate: Date;
-  RepeatDays?: Number;
-  Description?: String;
+  RepeatDays?: number;
+  Description?: string;
   Labels?: Array<Label>;
+
+  public constructor(init?: Partial<Task>) {
+    Object.assign(this, init);
+  }
 }
