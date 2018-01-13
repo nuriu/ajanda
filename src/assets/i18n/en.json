@@ -1,7 +1,7 @@
 {
   "PAGES": {
     "HOME": {
-      "SELECT_FILE": "Select a database file:"
+      "SELECT_FILE": "Select a data (.json) file:"
     },
     "MONTH": {
       "MENU_ENTRY": "Month View"
@@ -13,7 +13,7 @@
       "MENU_ENTRY": "Management"
     }
   },
-  "NEW_DATABASE": "New Database",
+  "NEW_DATA": "New Data File",
   "LOAD": "Load",
-  "SAVE_DATABASE": "Save Database"
+  "SAVE_DATA": "Save Data File"
 }

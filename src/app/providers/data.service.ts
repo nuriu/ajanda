@@ -2,95 +2,131 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import * as fs from 'fs';
-import * as SQL from 'sql.js';
+import * as moment from 'moment';
+
+import { Label } from '../models/models';
+import { Event } from '../models/models';
+import { Task } from '../models/models';
 
 @Injectable()
 export class DataService {
   private fileBuffer: Buffer;
-  private dbFile: File;
-  private db;
+  private databaseFile: File;
+  private db: string;
+
+  private labels: Array<Label>;
+  private events: Array<Event>;
+  private tasks: Array<Task>;
 
   constructor(private router: Router) {}
 
+  /**
+   * Loads sqlite database from given file object.
+   * @param database Database file object.
+   */
   loadDatabase(database: File) {
-    this.dbFile = database;
+    this.databaseFile = database;
 
-    this.fileBuffer = fs.readFileSync(this.dbFile.path);
-
-    // load database from file
-    this.db = new SQL.Database(this.fileBuffer);
-
-    this.createTablesIfNotExists();
+    console.log(this.db);
+    // this.createTablesIfNotExists();
+    // console.log(this.getLabels());
   }
 
+  /**
+   * Returns database files path if file object exists.
+   * Otherwise redirects to load page.
+   */
   getDatabasePath() {
-    if (this.dbFile !== null && this.dbFile !== undefined) {
-      return this.dbFile.path;
+    if (this.databaseFile !== null && this.databaseFile !== undefined) {
+      return this.databaseFile.path;
     } else {
       this.router.navigate(['./home']);
     }
   }
 
-  private createTablesIfNotExists() {
-    const tbl_labels = `
-    CREATE TABLE IF NOT EXISTS LABELS (
-      Id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-      Name TEXT NOT NULL UNIQUE,
-      ColorCode	TEXT NOT NULL,
-      Description	TEXT
-    );
-    `;
+  /**
+   * Saves current database data to loaded database file.
+   * If file object not exists; redirects to load page.
+   */
+  overwriteDataFile() {
+    if (this.databaseFile !== null && this.databaseFile !== undefined) {
 
-    const tbl_events = `
-    CREATE TABLE IF NOT EXISTS EVENTS (
-      Id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-      Title TEXT NOT NULL,
-      StartDate TEXT NOT NULL,
-      FinishDate TEXT NOT NULL
-    );
-    `;
-
-    const tbl_tasks = `
-    CREATE TABLE IF NOT EXISTS TASKS (
-      Id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-      Name TEXT NOT NULL,
-      Description	TEXT,
-      FinishDate TEXT NOT NULL,
-      RepeatDays INTEGER
-    );
-    `;
-
-    const tbl_eventslabels = `
-    CREATE TABLE IF NOT EXISTS EVENTSLABELS (
-      Event_Id INTEGER NOT NULL,
-      Label_Id INTEGER NOT NULL,
-      FOREIGN KEY(Event_Id) REFERENCES EVENTS(Id)
-      FOREIGN KEY(Label_Id) REFERENCES LABELS(Id)
-    )
-    `;
-
-    const tbl_taskslabels = `
-    CREATE TABLE IF NOT EXISTS TASKSLABELS (
-      Task_Id INTEGER NOT NULL,
-      Label_Id INTEGER NOT NULL,
-      FOREIGN KEY(Task_Id) REFERENCES TASKS(Id)
-      FOREIGN KEY(Label_Id) REFERENCES LABELS(Id)
-    )
-    `;
-
-    this.db.run(tbl_labels);
-    this.db.run(tbl_events);
-    this.db.run(tbl_eventslabels);
-    this.db.run(tbl_tasks);
-    this.db.run(tbl_taskslabels);
-
-    this.overwriteDatabase();
+    } else {
+      this.router.navigate(['./home']);
+    }
   }
 
-  overwriteDatabase() {
-    const data = this.db.export();
-    const buffer = new Buffer(data);
-    console.log(this.dbFile.path);
-    fs.writeFileSync(this.dbFile.path, buffer);
+  /**
+   * Returns label records.
+   */
+  getLabels(): Array<Label> {
+    if (!this.labels) {
+      this.loadLabels();
+    }
+
+    return this.labels;
+  }
+
+  /**
+   * Returns event records.
+   */
+  getEvents(): Array<Event> {
+    if (!this.events) {
+      this.loadEvents();
+    }
+
+    return this.events;
+  }
+
+  /**
+   * Returns task records.
+   */
+  getTasks(): Array<Task> {
+    if (!this.tasks) {
+      this.loadTasks();
+    }
+
+    return this.tasks;
+  }
+
+  /**
+   * Loads label records from database to service.
+   */
+  private loadLabels() {
+    if (!this.labels) {
+      this.labels = new Array<Label>();
+    }
+
+    const data = null;
+
+    data.forEach(element => {
+      this.labels.push();
+    });
+  }
+
+  /**
+   * Loads event records from data file to service.
+   */
+  private loadEvents() {
+    if (!this.events) {
+      this.events = new Array<Event>();
+    }
+
+    const data = null;
+
+    data.forEach(element => {});
+  }
+
+  /**
+   * Loads task records from data file to service.
+   */
+  private loadTasks() {
+    if (!this.tasks) {
+      this.tasks = new Array<Task>();
+    }
+
+    const data = null;
+
+    data.forEach(element => {});
   }
 }

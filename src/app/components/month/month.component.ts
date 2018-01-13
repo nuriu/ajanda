@@ -17,7 +17,7 @@ export class MonthComponent implements OnInit {
     this.databasePath = this.db.getDatabasePath();
   }
 
-  saveDatabase() {
-    this.db.overwriteDatabase();
+  saveData() {
+    this.db.overwriteDataFile();
   }
 }

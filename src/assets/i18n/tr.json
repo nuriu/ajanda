@@ -1,7 +1,7 @@
 {
   "PAGES": {
     "HOME": {
-      "SELECTFILE": "Bir veritabanı dosyası seçin:"
+      "SELECTFILE": "Geçerli bir veri dosyası (.json) seçin:"
     },
     "MONTH": {
       "MENU_ENTRY": "Aylık Görünüm"
@@ -13,7 +13,7 @@
       "MENU_ENTRY": "Yönetim"
     }
   },
-  "NEW_DATABASE": "Yeni Veritabanı Oluştur",
+  "NEW_DATA": "Yeni Veri Dosyası Oluştur",
   "LOAD": "Yükle",
-  "SAVE_DATABASE": "Veritabanını Kaydet"
+  "SAVE_DATA": "Veri Dosyasını Kaydet"
 }
