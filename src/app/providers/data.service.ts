@@ -70,7 +70,7 @@ export class DataService {
     this.overwriteDatabase();
   }
 
-  private overwriteDatabase() {
+  overwriteDatabase() {
     const data = this.db.export();
     const buffer = new Buffer(data);
     console.log(this.dbFile.path);

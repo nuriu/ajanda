@@ -1,8 +1,19 @@
 {
   "PAGES": {
-      "HOME": {
-          "SELECTFILE": "Bir veritabanı dosyası seçin:"
-      }
+    "HOME": {
+      "SELECTFILE": "Bir veritabanı dosyası seçin:"
+    },
+    "MONTH": {
+      "MENU_ENTRY": "Aylık Görünüm"
+    },
+    "DAY": {
+      "MENU_ENTRY": "Günlük Görünüm"
+    },
+    "MANAGEMENT": {
+      "MENU_ENTRY": "Yönetim"
+    }
   },
-  "LOAD": "Yükle"
+  "NEW_DATABASE": "Yeni Veritabanı Oluştur",
+  "LOAD": "Yükle",
+  "SAVE_DATABASE": "Veritabanını Kaydet"
 }

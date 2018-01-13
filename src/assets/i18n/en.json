@@ -1,8 +1,19 @@
 {
   "PAGES": {
-      "HOME": {
-        "SELECT_FILE": "Select a database file:"
-      }
+    "HOME": {
+      "SELECT_FILE": "Select a database file:"
+    },
+    "MONTH": {
+      "MENU_ENTRY": "Month View"
+    },
+    "DAY": {
+      "MENU_ENTRY": "Day View"
+    },
+    "MANAGEMENT": {
+      "MENU_ENTRY": "Management"
+    }
   },
-  "LOAD": "Load"
+  "NEW_DATABASE": "New Database",
+  "LOAD": "Load",
+  "SAVE_DATABASE": "Save Database"
 }
