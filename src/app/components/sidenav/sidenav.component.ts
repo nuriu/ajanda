@@ -13,6 +13,9 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit() { }
 
+  /**
+   * Ignites onFileSave event.
+   */
   saveData() {
     this.onFileSave.emit('');
   }

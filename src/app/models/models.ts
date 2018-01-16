@@ -51,6 +51,8 @@ export class Day {
 }
 
 export class Month {
+  Year: number;
+  Month: number;
   Days: Array<Day>;
 
   public constructor(init?: Partial<Month>) {
