@@ -138,25 +138,21 @@ export class Day {
 /**
  * Month.
  */
-export class Month {
+export class CalendarBlock {
   /**
-   * Year that month belongs to.
+   * If block is available to current month.
    */
-  Year: number;
+  isAvailable: boolean;
   /**
-   * Number of month at year. (1-12)
+   * Day with events and tasks.
    */
-  Month: number;
-  /**
-   * Days in month.
-   */
-  Days: Array<Day>;
+  Day: Day;
 
   /**
    * Class initializer.
    * @param init Initialization values.
    */
-  public constructor(init?: Partial<Month>) {
+  public constructor(init?: Partial<CalendarBlock>) {
     Object.assign(this, init);
   }
 }

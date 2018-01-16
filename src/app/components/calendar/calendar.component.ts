@@ -2,7 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import * as moment from 'moment';
 
-import { Day, Month } from '../../models/models';
+import { Day, CalendarBlock } from '../../models/models';
+
+const blockCount = 42;
 
 @Component({
   selector: 'app-calendar',
@@ -11,30 +13,60 @@ import { Day, Month } from '../../models/models';
 })
 export class CalendarComponent implements OnInit {
   @Input()
-  data: Month;
+  y: number;
+  @Input()
+  m: number;
 
-  private m: moment.Moment;
+  private data: Array<CalendarBlock>;
+
+  private _m: moment.Moment;
 
   constructor() { }
 
   ngOnInit() {
-    this.data = new Month();
-    this.m = moment();
+    this._m = moment();
     this.syncronize();
   }
 
   nextMonth() {
-    this.m = this.m.add({months: 1});
+    this._m = this._m.add({months: 1});
     this.syncronize();
   }
 
   previousMonth() {
-    this.m = this.m.subtract({months: 1});
+    this._m = this._m.subtract({months: 1});
     this.syncronize();
   }
 
   private syncronize() {
-    this.data.Year = this.m.year();
-    this.data.Month = this.m.month() + 1;
+    // initialize data
+    this.data = new Array<CalendarBlock>();
+    this.y = this._m.year();
+    this.m = this._m.month() + 1;
+
+    const startingWeekDay = this._m.startOf('month').isoWeekday();
+    const dayCount = this._m.daysInMonth();
+
+    // fill calendar blocks
+    for (let i = 1; i <= blockCount; i++) {
+      if (i < startingWeekDay) {
+        this.data.push(new CalendarBlock({
+          isAvailable: false
+        }));
+      } else if (i < startingWeekDay + dayCount) {
+        this.data.push(new CalendarBlock({
+          isAvailable: true,
+          Day: new Day({
+            Nu: (i === 1) ? 1 : i - (startingWeekDay - 1),
+            Events: null,
+            Tasks: null
+          })
+        }));
+      } else {
+        this.data.push(new CalendarBlock({
+          isAvailable: false
+        }));
+      }
+    }
   }
 }
