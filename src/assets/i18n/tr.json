@@ -8,6 +8,9 @@
     "MONTH": {
       "MENU_ENTRY": "Aylık Görünüm"
     },
+    "WEEK": {
+      "MENU_ENTRY": "Haftalık Görünüm"
+    },
     "DAY": {
       "MENU_ENTRY": "Günlük Görünüm"
     }

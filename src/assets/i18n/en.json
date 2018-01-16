@@ -8,6 +8,9 @@
     "MONTH": {
       "MENU_ENTRY": "Month View"
     },
+    "WEEK": {
+      "MENU_ENTRY": "Week View"
+    },
     "DAY": {
       "MENU_ENTRY": "Day View"
     }
