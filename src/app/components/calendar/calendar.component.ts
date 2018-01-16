@@ -4,8 +4,6 @@ import * as moment from 'moment';
 
 import { Day, CalendarBlock } from '../../models/models';
 
-const blockCount = 42;
-
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -17,9 +15,11 @@ export class CalendarComponent implements OnInit {
   @Input()
   m: number;
 
-  private data: Array<CalendarBlock>;
-
   private _m: moment.Moment;
+  private blockCount: number;
+  private data: Array<CalendarBlock>;
+  private startingWeekDay: number;
+  private dayCount: number;
 
   constructor() { }
 
@@ -43,21 +43,22 @@ export class CalendarComponent implements OnInit {
     this.data = new Array<CalendarBlock>();
     this.y = this._m.year();
     this.m = this._m.month() + 1;
+    this.startingWeekDay = this._m.startOf('month').isoWeekday();
+    this.dayCount = this._m.daysInMonth();
 
-    const startingWeekDay = this._m.startOf('month').isoWeekday();
-    const dayCount = this._m.daysInMonth();
+    (this.startingWeekDay > 4 && this.dayCount > 29) ? this.blockCount = 42 : this.blockCount = 35;
 
     // fill calendar blocks
-    for (let i = 1; i <= blockCount; i++) {
-      if (i < startingWeekDay) {
+    for (let i = 1; i <= this.blockCount; i++) {
+      if (i < this.startingWeekDay) {
         this.data.push(new CalendarBlock({
           isAvailable: false
         }));
-      } else if (i < startingWeekDay + dayCount) {
+      } else if (i < this.startingWeekDay + this.dayCount) {
         this.data.push(new CalendarBlock({
           isAvailable: true,
           Day: new Day({
-            Nu: (i === 1) ? 1 : i - (startingWeekDay - 1),
+            Nu: (i === 1) ? 1 : i - (this.startingWeekDay - 1),
             Events: null,
             Tasks: null
           })
