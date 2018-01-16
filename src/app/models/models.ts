@@ -39,3 +39,21 @@ export class DataFile {
   EVENTS: Array<Event>;
   TASKS: Array<Task>;
 }
+
+export class Day {
+  Nu: number;
+  Events: Array<Event>;
+  Tasks: Array<Task>;
+
+  public constructor(init?: Partial<Day>) {
+    Object.assign(this, init);
+  }
+}
+
+export class Month {
+  Days: Array<Day>;
+
+  public constructor(init?: Partial<Month>) {
+    Object.assign(this, init);
+  }
+}
