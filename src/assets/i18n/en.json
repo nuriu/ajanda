@@ -10,6 +10,7 @@
       "MENU_ENTRY": "Day View"
     }
   },
+  "MENU": "MENU",
   "LOAD_DATA_FILE": "Load Selected Data File",
   "NEW_DATA_FILE": "New Data File",
   "SAVE_DATA_FILE": "Save Data File"

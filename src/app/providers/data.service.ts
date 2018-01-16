@@ -59,7 +59,7 @@ export class DataService {
    * Returns database files path if file object exists.
    * Otherwise redirects to load page.
    */
-  getDatabasePath() {
+  getDataFilePath() {
     if (!isNullOrUndefined(this.dataFilePath)) {
       return this.dataFilePath;
     } else {

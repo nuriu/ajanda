@@ -9,12 +9,12 @@ import { DataService } from '../../providers/data.service';
 })
 export class MonthComponent implements OnInit {
   @Input()
-  databasePath: string;
+  dataFilePath: string;
 
   constructor(private db: DataService) { }
 
   ngOnInit() {
-    this.databasePath = this.db.getDatabasePath();
+    this.dataFilePath = this.db.getDataFilePath();
   }
 
   saveData() {

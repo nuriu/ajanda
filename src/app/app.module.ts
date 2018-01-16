@@ -19,7 +19,10 @@ import { JsonService } from './providers/json.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { MonthComponent } from './components/month/month.component'
+import { MonthComponent } from './components/month/month.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { CalendarComponent } from './components/calendar/calendar.component'
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -27,7 +30,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, MonthComponent],
+  declarations: [AppComponent, HomeComponent, MonthComponent, HeaderComponent, SidenavComponent, CalendarComponent],
   imports: [
     BrowserModule,
     FormsModule,

@@ -10,6 +10,7 @@
       "MENU_ENTRY": "Günlük Görünüm"
     }
   },
+  "MENU": "MENÜ",
   "LOAD_DATA_FILE": "Seçilen Veri Dosyasını Yükle",
   "NEW_DATA_FILE": "Yeni Veri Dosyası Oluştur",
   "SAVE_DATA_FILE": "Veri Dosyasını Kaydet"

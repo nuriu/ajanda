@@ -1,15 +1,5 @@
 <div class="container">
-  <header class="navbar">
-    <section class="navbar-section">
-      <!-- Left Section -->
-    </section>
-    <section class="navbar-center">
-      {{ this.databasePath }}
-    </section>
-    <section class="navbar-section">
-      <a href="https://github.com/nuriu/ajanda" class="btn btn-link">GitHub</a>
-    </section>
-  </header>
+  <app-header [title]="this.dataFilePath"></app-header>
 
   <div class="columns">
     <div class="column col-2">
