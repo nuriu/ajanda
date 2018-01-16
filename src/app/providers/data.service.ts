@@ -11,13 +11,14 @@ import { Label } from '../models/models';
 import { Event } from '../models/models';
 import { Task } from '../models/models';
 import { DataFile } from '../models/models'
+import { isNullOrUndefined } from 'util';
 
 const DOMAIN = 'com.nuriuzunoglu.ajanda';
 
 @Injectable()
 export class DataService {
   private fileBuffer: Buffer;
-  private dataFile: File;
+  private dataFilePath: string;
   private db: DataFile;
 
   constructor(private router: Router, private js: JsonService) { }
@@ -26,10 +27,10 @@ export class DataService {
    * Loads data file from given file object.
    * @param data Data file object.
    */
-  loadDataFile(data: File) {
-    this.dataFile = data;
+  loadDataFile(dataFilePath: string) {
+    this.dataFilePath = dataFilePath;
 
-    const jsonString = fs.readFileSync(this.dataFile.path, 'utf8');
+    const jsonString = fs.readFileSync(this.dataFilePath, 'utf8');
 
     if (this.js.isValid(jsonString)) {
       this.db = JSON.parse(jsonString);
@@ -49,6 +50,9 @@ export class DataService {
       EVENTS: [],
       TASKS: []
     };
+
+    // TODO: test darwin & win32
+    this.dataFilePath = './data.ajanda';
   }
 
   /**
@@ -56,8 +60,8 @@ export class DataService {
    * Otherwise redirects to load page.
    */
   getDatabasePath() {
-    if (this.dataFile !== null && this.dataFile !== undefined) {
-      return this.dataFile.path;
+    if (!isNullOrUndefined(this.dataFilePath)) {
+      return this.dataFilePath;
     } else {
       this.router.navigate(['./home']);
     }
@@ -68,8 +72,8 @@ export class DataService {
    * If file object not exists; redirects to load page.
    */
   overwriteDataFile() {
-    if (this.dataFile !== null && this.dataFile !== undefined) {
-      fs.writeFile(this.dataFile.path, JSON.stringify(this.db), err => {
+    if (!isNullOrUndefined(this.dataFilePath)) {
+      fs.writeFile(this.dataFilePath, JSON.stringify(this.db), err => {
         console.error(err);
       });
     } else {

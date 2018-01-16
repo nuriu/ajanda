@@ -15,13 +15,18 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() { }
 
-  loadDatabase() {
+  newDataFile() {
+    this.db.newDatafile();
+    this.router.navigate(['./month']);
+  }
+
+  loadDataFile() {
     // get selected file
     const file = document.forms['database-form']['database-input'].files[0];
 
     if (file !== undefined && file !== null) {
       // load file data to service
-      this.db.loadDataFile(file);
+      this.db.loadDataFile(file.path);
       // go to month view
       this.router.navigate(['./month']);
     } else {

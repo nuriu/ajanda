@@ -1,19 +1,16 @@
 {
   "PAGES": {
     "HOME": {
-      "SELECT_FILE": "Select a data (.json) file:"
+      "SELECT_FILE": "Select a data (.ajanda) file:"
     },
     "MONTH": {
       "MENU_ENTRY": "Month View"
     },
     "DAY": {
       "MENU_ENTRY": "Day View"
-    },
-    "MANAGEMENT": {
-      "MENU_ENTRY": "Management"
     }
   },
-  "NEW_DATA": "New Data File",
-  "LOAD": "Load",
-  "SAVE_DATA": "Save Data File"
+  "LOAD_DATA_FILE": "Load Selected Data File",
+  "NEW_DATA_FILE": "New Data File",
+  "SAVE_DATA_FILE": "Save Data File"
 }
