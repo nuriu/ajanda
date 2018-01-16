@@ -1,3 +1,23 @@
-<p>
-  sidenav works!
-</p>
+<ul class="nav">
+    <li class="nav-item active">
+      <a href="#">{{ 'PAGES.MONTH.MENU_ENTRY' | translate }}</a>
+    </li>
+    <li class="nav-item">
+      <a href="#">{{ 'PAGES.DAY.MENU_ENTRY' | translate }}</a>
+    </li>
+
+    <!-- TODO: implement label filter
+    <li class="nav-item">
+      <a href="#">{{ 'FILTER' | translate }}</a>
+      <ul class="nav">
+        <li class="nav-item">
+          <a href="#">Flexbox grid</a>
+        </li>
+      </ul>
+    </li>
+    -->
+
+    <li class="nav-item">
+      <a href="#" (click)="saveData()">{{ 'SAVE_DATA_FILE' | translate }}</a>
+    </li>
+  </ul>

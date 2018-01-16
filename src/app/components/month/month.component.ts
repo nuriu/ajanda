@@ -18,6 +18,7 @@ export class MonthComponent implements OnInit {
   }
 
   saveData() {
+    console.log('save data');
     this.db.overwriteDataFile();
   }
 }
