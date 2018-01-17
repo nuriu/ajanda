@@ -19,6 +19,7 @@ export class ModalComponent implements OnInit {
   ngOnInit() { }
 
   private submit() {
+    this.close();
     this.onSubmit.emit();
   }
 
