@@ -16,8 +16,4 @@ export class MonthComponent implements OnInit {
   ngOnInit() {
     this.dataFilePath = this.db.getDataFilePath();
   }
-
-  saveData() {
-    this.db.overwriteDataFile();
-  }
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+
+import { DataService } from '../../providers/data.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -6,17 +8,33 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
-  @Output()
-  onFileSave = new EventEmitter();
-
-  constructor() { }
+  constructor(private db: DataService) { }
 
   ngOnInit() { }
 
   /**
-   * Ignites onFileSave event.
+   * Saves data to data file.
    */
   saveData() {
-    this.onFileSave.emit('');
+    this.db.overwriteDataFile();
+  }
+
+  addLabel() {
+  }
+
+  addEvent() {
+
+  }
+
+  addTask() {
+
+  }
+
+  openModal(id: string) {
+    document.getElementById(id).classList.add('active');
+  }
+
+  closeModal(id: string) {
+    document.getElementById(id).classList.remove('active');
   }
 }

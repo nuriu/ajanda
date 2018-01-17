@@ -37,5 +37,8 @@
   "LOAD_DATA_FILE": "Load Selected Data File",
   "NEW_DATA_FILE": "Create New Data File",
   "SUBMIT": "Submit",
-  "CLOSE": "Close"
+  "CLOSE": "Close",
+  "LABEL_NAME": "Label Name",
+  "COLOR_CODE": "Color Code",
+  "DESCRIPTION": "Description"
 }
