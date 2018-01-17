@@ -1,32 +1,45 @@
 <ul class="nav">
-    <li class="nav-item active">
-      <a href="#">{{ 'MENU.MONTH_VIEW' | translate }}</a>
-    </li>
-    <li class="nav-item">
-      <a href="#">{{ 'MENU.WEEK_VIEW' | translate }}</a>
-    </li>
-    <li class="nav-item">
-      <a href="#">{{ 'MENU.DAY_VIEW' | translate }}</a>
-    </li>
+  <li class="nav-item active">
+    <a href="#">{{ 'MENU.MONTH_VIEW' | translate }}</a>
+  </li>
+  <li class="nav-item">
+    <a href="#">{{ 'MENU.WEEK_VIEW' | translate }}</a>
+  </li>
+  <li class="nav-item">
+    <a href="#">{{ 'MENU.DAY_VIEW' | translate }}</a>
+  </li>
 
-    <li class="divider"></li>
+  <li class="divider"></li>
 
-    <!-- TODO: implement label filter -->
-    <li class="nav-item">
-      <a>{{ 'MENU.FILTER' | translate }}</a>
-      <ul class="nav">
-        <li class="nav-item">
-          <a class="chip">LABEL 1</a>
-        </li>
-        <li class="nav-item">
-          <a class="chip">LABEL 2</a>
-        </li>
-      </ul>
-    </li>
+  <li class="nav-item">
+    <a href="">{{ 'MENU.NEW_EVENT' | translate }}</a>
+  </li>
 
-    <li class="divider"></li>
+  <li class="nav-item">
+    <a href="">{{ 'MENU.NEW_TASK' | translate }}</a>
+  </li>
+  <li class="nav-item">
+    <a href="">{{ 'MENU.NEW_LABEL' | translate }}</a>
+  </li>
 
-    <li class="nav-item">
-      <a href="#" (click)="saveData()">{{ 'MENU.SAVE_DATA_FILE' | translate }}</a>
-    </li>
-  </ul>
+  <li class="divider"></li>
+
+  <!-- TODO: implement label filter -->
+  <li class="nav-item">
+    <a>{{ 'MENU.FILTER' | translate }}</a>
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="chip">LABEL 1</a>
+      </li>
+      <li class="nav-item">
+        <a class="chip">LABEL 2</a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="divider"></li>
+
+  <li class="nav-item">
+    <a href="#" (click)="saveData()">{{ 'MENU.SAVE_DATA_FILE' | translate }}</a>
+  </li>
+</ul>
