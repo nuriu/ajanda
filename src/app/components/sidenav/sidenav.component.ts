@@ -1,5 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 
+import { Label, Event, Task } from '../../models/models';
+
 import { DataService } from '../../providers/data.service';
 
 @Component({
@@ -19,13 +21,36 @@ export class SidenavComponent implements OnInit {
     this.db.overwriteDataFile();
   }
 
+  /**
+   * Sends new label object to data service.
+   */
   addLabel() {
+    const n = (<HTMLInputElement>document.getElementById('label-name')).value;
+    const c = (<HTMLInputElement>document.getElementById('label-color-code')).value;
+    const d = (<HTMLInputElement>document.getElementById('label-description')).value;
+
+    if (n && c) {
+      this.db.addLabel(new Label({
+        Id: '',
+        Name: n,
+        ColorCode: c,
+        Description: d
+      }));
+    } else {
+      // TODO: show error toast.
+    }
   }
 
+  /**
+   * Sends new event object to data service.
+   */
   addEvent() {
 
   }
 
+  /**
+   * Sends new task object to data service.
+   */
   addTask() {
 
   }
