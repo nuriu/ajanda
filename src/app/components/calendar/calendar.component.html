@@ -3,7 +3,7 @@
     <button class="btn btn-action btn-link btn-lg">
       <i class="icon icon-arrow-left" (click)="previousMonth()"></i>
     </button>
-    <div class="navbar-primary">{{ 'MONTHS.' + this.m.toString() | translate }} {{ this.y }}</div>
+    <div class="navbar-primary">{{ 'MONTHS.' + m.toString() | translate }} {{ y }}</div>
     <button class="btn btn-action btn-link btn-lg">
       <i class="icon icon-arrow-right" (click)="nextMonth()"></i>
     </button>
@@ -20,10 +20,10 @@
     </div>
 
     <div class="calendar-body">
-      <div *ngFor="let item of this.data; let i = index"
+      <div *ngFor="let item of data; let i = index"
             [ngClass]="{'calendar-date': true, 'current-month': item.isAvailable,
-                        'disabled': !item.isAvailable, 'prev-month': i < this.startingWeekDay - 1,
-                        'next-month': i >= this.dayCount + this.startingWeekDay - 1 }">
+                        'disabled': !item.isAvailable, 'prev-month': i < startingWeekDay - 1,
+                        'next-month': i >= dayCount + startingWeekDay - 1 }">
         <button *ngIf="item.isAvailable" class="date-item">{{ item.Day.Nu }}</button>
       </div>
     </div>
