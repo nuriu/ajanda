@@ -12,15 +12,23 @@
   <li class="divider"></li>
 
   <li class="nav-item">
-    <a href="">{{ 'MENU.NEW_EVENT' | translate }}</a>
+    <a (click)="openModal('event-modal')">{{ 'MENU.NEW_EVENT' | translate }}</a>
   </li>
 
+  <app-modal [id]="'event-modal'" [title]="'MENU.NEW_EVENT' | translate"></app-modal>
+
   <li class="nav-item">
-    <a href="">{{ 'MENU.NEW_TASK' | translate }}</a>
+    <a (click)="openModal('task-modal')">{{ 'MENU.NEW_TASK' | translate }}</a>
   </li>
+
+  <app-modal [id]="'task-modal'" [title]="'MENU.NEW_TASK' | translate"></app-modal>
+
   <li class="nav-item">
-    <a href="">{{ 'MENU.NEW_LABEL' | translate }}</a>
+    <a (click)="openModal('label-modal')">{{ 'MENU.NEW_LABEL' | translate }}</a>
   </li>
+
+  <app-modal [id]="'label-modal'" [title]="'MENU.NEW_LABEL' | translate" (onSubmit)="addLabel($event)">
+  </app-modal>
 
   <li class="divider"></li>
 
@@ -29,10 +37,10 @@
     <a>{{ 'MENU.FILTER' | translate }}</a>
     <ul class="nav">
       <li class="nav-item">
-        <a class="chip">LABEL 1</a>
+        <a class="label">LABEL 1</a>
       </li>
       <li class="nav-item">
-        <a class="chip">LABEL 2</a>
+        <a class="label">LABEL 2</a>
       </li>
     </ul>
   </li>
