@@ -1,17 +1,4 @@
 {
-  "PAGES": {
-    "HOME": {
-      "SELECT_DATA_FILE": "Select a data (.ajanda) file:",
-      "LOAD_DATA_FILE": "Load Selected Data File",
-      "NEW_DATA_FILE": "Create New Data File"
-    },
-    "MONTH": {
-    },
-    "WEEK": {
-    },
-    "DAY": {
-    }
-  },
   "MENU": {
     "TITLE": "MENU",
     "MONTH_VIEW": "Month View",
@@ -45,5 +32,10 @@
     "10": "October",
     "11": "November",
     "12": "December"
-  }
+  },
+  "SELECT_DATA_FILE": "Select a data (.ajanda) file:",
+  "LOAD_DATA_FILE": "Load Selected Data File",
+  "NEW_DATA_FILE": "Create New Data File",
+  "SUBMIT": "Submit",
+  "CLOSE": "Close"
 }
