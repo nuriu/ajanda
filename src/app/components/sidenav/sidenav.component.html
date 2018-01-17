@@ -1,17 +1,19 @@
 <ul class="nav">
     <li class="nav-item active">
-      <a href="#">{{ 'PAGES.MONTH.MENU_ENTRY' | translate }}</a>
+      <a href="#">{{ 'MENU.MONTH_VIEW' | translate }}</a>
     </li>
     <li class="nav-item">
-      <a href="#">{{ 'PAGES.WEEK.MENU_ENTRY' | translate }}</a>
+      <a href="#">{{ 'MENU.WEEK_VIEW' | translate }}</a>
     </li>
     <li class="nav-item">
-      <a href="#">{{ 'PAGES.DAY.MENU_ENTRY' | translate }}</a>
+      <a href="#">{{ 'MENU.DAY_VIEW' | translate }}</a>
     </li>
+
+    <li class="divider"></li>
 
     <!-- TODO: implement label filter -->
     <li class="nav-item">
-      <a>{{ 'FILTER' | translate }}</a>
+      <a>{{ 'MENU.FILTER' | translate }}</a>
       <ul class="nav">
         <li class="nav-item">
           <a class="chip">LABEL 1</a>
@@ -22,7 +24,9 @@
       </ul>
     </li>
 
+    <li class="divider"></li>
+
     <li class="nav-item">
-      <a href="#" (click)="saveData()">{{ 'SAVE_DATA_FILE' | translate }}</a>
+      <a href="#" (click)="saveData()">{{ 'MENU.SAVE_DATA_FILE' | translate }}</a>
     </li>
   </ul>

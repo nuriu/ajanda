@@ -6,14 +6,22 @@
       "NEW_DATA_FILE": "Create New Data File"
     },
     "MONTH": {
-      "MENU_ENTRY": "Month View"
     },
     "WEEK": {
-      "MENU_ENTRY": "Week View"
     },
     "DAY": {
-      "MENU_ENTRY": "Day View"
     }
+  },
+  "MENU": {
+    "TITLE": "MENU",
+    "MONTH_VIEW": "Month View",
+    "WEEK_VIEW": "Week View",
+    "DAY_VIEW": "Day View",
+    "FILTER": "Filter",
+    "NEW_EVENT": "Add new event",
+    "NEW_TASK": "Add new task",
+    "NEW_LABEL": "Add new label",
+    "SAVE_DATA_FILE": "Save Data File"
   },
   "DAYS": {
     "1": "Monday",
@@ -37,8 +45,5 @@
     "10": "October",
     "11": "November",
     "12": "December"
-  },
-  "MENU": "MENU",
-  "FILTER": "Filter",
-  "SAVE_DATA_FILE": "Save Data File"
+  }
 }

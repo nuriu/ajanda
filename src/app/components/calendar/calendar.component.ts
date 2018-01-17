@@ -24,7 +24,7 @@ export class CalendarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this._m = moment();
+    this._m = moment().startOf('month');
     this.syncronize();
   }
 
@@ -43,7 +43,7 @@ export class CalendarComponent implements OnInit {
     this.data = new Array<CalendarBlock>();
     this.y = this._m.year();
     this.m = this._m.month() + 1;
-    this.startingWeekDay = this._m.startOf('month').isoWeekday();
+    this.startingWeekDay = this._m.isoWeekday();
     this.dayCount = this._m.daysInMonth();
 
     (this.startingWeekDay > 4 && this.dayCount > 29) ? this.blockCount = 42 : this.blockCount = 35;
