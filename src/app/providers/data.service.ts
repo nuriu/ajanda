@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import * as fs from 'fs';
 import * as moment from 'moment';
-import * as uuidv5 from 'uuid/v5';
+import * as uuidv4 from 'uuid/v4';
 
 import { JsonService } from './json.service';
 
@@ -12,8 +12,6 @@ import { Event } from '../models/models';
 import { Task } from '../models/models';
 import { DataFile } from '../models/models'
 import { isNullOrUndefined } from 'util';
-
-const DOMAIN = 'com.nuriuzunoglu.ajanda';
 
 @Injectable()
 export class DataService {
@@ -93,6 +91,7 @@ export class DataService {
    * @param event Event object which will be added.
    */
   addEvent(event: Event) {
+    event.Id = uuidv4();
     this.db.EVENTS.push(event);
   }
 
@@ -101,6 +100,7 @@ export class DataService {
    * @param task Task object which will be added.
    */
   addTask(task: Task) {
+    task.Id = uuidv4();
     this.db.TASKS.push(task);
   }
 
@@ -109,6 +109,7 @@ export class DataService {
    * @param label Label object which will be added.
    */
   addLabel(label: Label) {
+    label.Id = uuidv4();
     this.db.LABELS.push(label);
   }
 
@@ -119,7 +120,9 @@ export class DataService {
   overwriteDataFile() {
     if (!isNullOrUndefined(this.dataFilePath)) {
       fs.writeFile(this.dataFilePath, JSON.stringify(this.db), err => {
-        console.error(err);
+        if (err) {
+          console.error(err);
+        }
       });
     } else {
       this.router.navigate(['./home']);

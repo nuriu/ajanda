@@ -5,7 +5,7 @@ export class Label {
   /**
    * Unique identifier.
    */
-  Id: number;
+  Id: string;
   /**
    * Name of the label.
    */
@@ -35,7 +35,7 @@ export class Event {
   /**
    * Unique identifier.
    */
-  Id: number;
+  Id: string;
   /**
    * Title of the event.
    */
@@ -69,7 +69,7 @@ export class Task {
   /**
    * Unique identifier.
    */
-  Id: number;
+  Id: string;
   /**
    * Task name.
    */
