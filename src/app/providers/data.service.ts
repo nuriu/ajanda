@@ -24,8 +24,41 @@ export class DataService {
   constructor(private router: Router, private js: JsonService) { }
 
   /**
+   * Returns label records.
+   */
+  getLabels(): Array<Label> {
+    return this.db.LABELS;
+  }
+
+  /**
+   * Returns event records.
+   */
+  getEvents(): Array<Event> {
+    return this.db.EVENTS;
+  }
+
+  /**
+   * Returns task records.
+   */
+  getTasks(): Array<Task> {
+    return this.db.TASKS;
+  }
+
+  /**
+   * Returns database files path if file object exists.
+   * Otherwise redirects to load page.
+   */
+  getDataFilePath() {
+    if (!isNullOrUndefined(this.dataFilePath)) {
+      return this.dataFilePath;
+    } else {
+      this.router.navigate(['./home']);
+    }
+  }
+
+  /**
    * Loads data file from given file object.
-   * @param data Data file object.
+   * @param dataFilePath Data file object.
    */
   loadDataFile(dataFilePath: string) {
     this.dataFilePath = dataFilePath;
@@ -56,15 +89,27 @@ export class DataService {
   }
 
   /**
-   * Returns database files path if file object exists.
-   * Otherwise redirects to load page.
+   * Adds new event to the data.
+   * @param event Event object which will be added.
    */
-  getDataFilePath() {
-    if (!isNullOrUndefined(this.dataFilePath)) {
-      return this.dataFilePath;
-    } else {
-      this.router.navigate(['./home']);
-    }
+  addEvent(event: Event) {
+    this.db.EVENTS.push(event);
+  }
+
+  /**
+   * Adds new task to the data.
+   * @param task Task object which will be added.
+   */
+  addTask(task: Task) {
+    this.db.TASKS.push(task);
+  }
+
+  /**
+   * Adds new label to the data.
+   * @param label Label object which will be added.
+   */
+  addLabel(label: Label) {
+    this.db.LABELS.push(label);
   }
 
   /**
@@ -79,26 +124,5 @@ export class DataService {
     } else {
       this.router.navigate(['./home']);
     }
-  }
-
-  /**
-   * Returns label records.
-   */
-  getLabels(): Array<Label> {
-    return this.db.LABELS;
-  }
-
-  /**
-   * Returns event records.
-   */
-  getEvents(): Array<Event> {
-    return this.db.EVENTS;
-  }
-
-  /**
-   * Returns task records.
-   */
-  getTasks(): Array<Task> {
-    return this.db.TASKS;
   }
 }
