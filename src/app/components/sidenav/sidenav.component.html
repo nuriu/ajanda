@@ -41,7 +41,31 @@
     <a (click)="openModal('task-modal')">{{ 'MENU.NEW_TASK' | translate }}</a>
   </li>
 
-  <app-modal [id]="'task-modal'" [title]="'MENU.NEW_TASK' | translate"></app-modal>
+  <app-modal [id]="'task-modal'" [title]="'MENU.NEW_TASK' | translate" (onSubmit)="addTask()">
+    <form>
+      <div class="form-group">
+        <label class="form-label" for="task-name">{{ 'TASK_NAME' | translate }}:</label>
+        <input class="form-input" id="task-name" [placeholder]="'TASK_NAME' | translate" type="text">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="task-finish-date">{{ 'FINISH_DATE' | translate }}:</label>
+        <input class="form-input" id="task-finish-date" [placeholder]="'FINISH_DATE' | translate" type="date">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="task-repeat-days">{{ 'REPEAT_DAYS' | translate }} ({{ 'OPTIONAL' | translate }}):</label>
+        <input class="form-input" id="task-repeat-days" [placeholder]="'REPEAT_DAYS' | translate" type="number">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="task-description">{{ 'DESCRIPTION' | translate }} ({{ 'OPTIONAL' | translate }}):</label>
+        <input class="form-input" id="task-description" [placeholder]="'DESCRIPTION' | translate" type="text">
+      </div>
+      <!-- TODO: implement label picker. -->
+      <!-- <div class="form-group">
+        <label class="form-label" for="label-color-code">{{ 'COLOR_CODE' | translate }}:</label>
+        <input class="form-input" id="label-color-code" [placeholder]="'COLOR_CODE' | translate" type="text">
+      </div> -->
+    </form>
+  </app-modal>
 
   <li class="nav-item">
     <a (click)="openModal('label-modal')">{{ 'MENU.NEW_LABEL' | translate }}</a>
@@ -60,7 +84,7 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="label-description">{{ 'DESCRIPTION' | translate }}:</label>
+        <label class="form-label" for="label-description">{{ 'DESCRIPTION' | translate }} ({{ 'OPTIONAL' | translate }}):</label>
         <input class="form-input" id="label-description" [placeholder]="'DESCRIPTION' | translate" type="text">
       </div>
     </form>

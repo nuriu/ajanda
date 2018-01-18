@@ -66,7 +66,22 @@ export class SidenavComponent implements OnInit {
    * Sends new task object to data service.
    */
   addTask() {
+    const n = (<HTMLInputElement>document.getElementById('task-name')).value;
+    const fd = (<HTMLInputElement>document.getElementById('task-finish-date')).valueAsDate;
+    const rpd = (<HTMLInputElement>document.getElementById('task-repeat-days')).valueAsNumber;
+    const d = (<HTMLInputElement>document.getElementById('task-description')).value;
 
+    if (n && fd) {
+      this.db.addTask(new Task({
+        Id: '',
+        Name: n,
+        FinishDate: fd,
+        RepeatDays: rpd,
+        Description: d
+      }));
+    } else {
+      // TODO: show error toast.
+    }
   }
 
   openModal(id: string) {
