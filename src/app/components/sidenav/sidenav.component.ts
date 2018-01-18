@@ -45,7 +45,21 @@ export class SidenavComponent implements OnInit {
    * Sends new event object to data service.
    */
   addEvent() {
+    const t = (<HTMLInputElement>document.getElementById('event-title')).value;
+    const sd = (<HTMLInputElement>document.getElementById('event-start-date')).valueAsDate;
+    const fd = (<HTMLInputElement>document.getElementById('event-finish-date')).valueAsDate;
 
+    if (t && sd && fd) {
+      this.db.addEvent(new Event({
+        Id: '',
+        Title: t,
+        StartDate: sd,
+        FinishDate: fd,
+        Labels: new Array<Label>()
+      }));
+    } else {
+      // TODO: show error toast.
+    }
   }
 
   /**

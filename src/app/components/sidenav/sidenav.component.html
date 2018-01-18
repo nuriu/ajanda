@@ -15,7 +15,27 @@
     <a (click)="openModal('event-modal')">{{ 'MENU.NEW_EVENT' | translate }}</a>
   </li>
 
-  <app-modal [id]="'event-modal'" [title]="'MENU.NEW_EVENT' | translate"></app-modal>
+  <app-modal [id]="'event-modal'" [title]="'MENU.NEW_EVENT' | translate" (onSubmit)="addEvent()">
+    <form>
+      <div class="form-group">
+        <label class="form-label" for="event-title">{{ 'EVENT_TITLE' | translate }}:</label>
+        <input class="form-input" id="event-title" [placeholder]="'EVENT_TITLE' | translate" type="text">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="event-start-date">{{ 'START_DATE' | translate }}:</label>
+        <input class="form-input" id="event-start-date" [placeholder]="'START_DATE' | translate" type="date">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="event-finish-date">{{ 'FINISH_DATE' | translate }}:</label>
+        <input class="form-input" id="event-finish-date" [placeholder]="'FINISH_DATE' | translate" type="date">
+      </div>
+      <!-- TODO: implement label picker. -->
+      <!-- <div class="form-group">
+        <label class="form-label" for="label-color-code">{{ 'COLOR_CODE' | translate }}:</label>
+        <input class="form-input" id="label-color-code" [placeholder]="'COLOR_CODE' | translate" type="text">
+      </div> -->
+    </form>
+  </app-modal>
 
   <li class="nav-item">
     <a (click)="openModal('task-modal')">{{ 'MENU.NEW_TASK' | translate }}</a>
@@ -27,17 +47,16 @@
     <a (click)="openModal('label-modal')">{{ 'MENU.NEW_LABEL' | translate }}</a>
   </li>
 
-  <app-modal [id]="'label-modal'" [title]="'MENU.NEW_LABEL' | translate" (onSubmit)="addLabel($event)">
+  <app-modal [id]="'label-modal'" [title]="'MENU.NEW_LABEL' | translate" (onSubmit)="addLabel()">
     <form>
       <div class="form-group">
         <label class="form-label" for="label-name">{{ 'LABEL_NAME' | translate }}:</label>
         <input class="form-input" id="label-name" [placeholder]="'LABEL_NAME' | translate" type="text">
       </div>
 
-      <!-- TODO: implement color picker. -->
       <div class="form-group">
         <label class="form-label" for="label-color-code">{{ 'COLOR_CODE' | translate }}:</label>
-        <input class="form-input" id="label-color-code" [placeholder]="'COLOR_CODE' | translate" type="text">
+        <input class="form-input" id="label-color-code" [placeholder]="'COLOR_CODE' | translate" type="color">
       </div>
 
       <div class="form-group">
