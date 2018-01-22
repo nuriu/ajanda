@@ -25,21 +25,21 @@ export class DataService {
    * Returns label records.
    */
   getLabels(): Array<Label> {
-    return this.db.LABELS;
+    if (this.db) { return this.db.LABELS; } else { return null; }
   }
 
   /**
    * Returns event records.
    */
   getEvents(): Array<Event> {
-    return this.db.EVENTS;
+    if (this.db) { return this.db.EVENTS; } else { return null; }
   }
 
   /**
    * Returns task records.
    */
   getTasks(): Array<Task> {
-    return this.db.TASKS;
+    if (this.db) { return this.db.TASKS; } else { return null; }
   }
 
   /**

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Label, Event, Task } from '../../models/models';
 
@@ -10,9 +10,14 @@ import { DataService } from '../../providers/data.service';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
+  @Input()
+  labels: Array<Label>;
+
   constructor(private db: DataService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.labels = this.db.getLabels();
+  }
 
   /**
    * Saves data to data file.
