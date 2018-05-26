@@ -20,8 +20,7 @@
     </div>
 
     <div class="calendar-body">
-      <div *ngFor="let item of data; let i = index"
-            [ngClass]="{'calendar-date': true, 'current-month': item.isAvailable,
+      <div *ngFor="let item of data; let i = index" [ngClass]="{'calendar-date': true, 'current-month': item.isAvailable,
                         'disabled': !item.isAvailable, 'prev-month': i < startingWeekDay - 1,
                         'next-month': i >= dayCount + startingWeekDay - 1 }">
         <button *ngIf="item.isAvailable" class="date-item">{{ item.Day.Nu }}</button>

@@ -1,29 +1,25 @@
-import 'zone.js/dist/zone-mix';
-import 'reflect-metadata';
-import 'polyfills';
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-
-import { AppRoutingModule } from './app-routing.module';
-
+import { BrowserModule } from '@angular/platform-browser';
 // NG Translate
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
-import { ElectronService } from './providers/electron.service';
-import { DataService } from './providers/data.service';
-import { JsonService } from './providers/json.service';
-
+import 'reflect-metadata';
+import 'zone.js/dist/zone-mix';
+import '../polyfills';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { MonthComponent } from './components/month/month.component';
-import { HeaderComponent } from './components/header/header.component';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
-import { ModalComponent } from './components/modal/modal.component'
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { MonthComponent } from './components/month/month.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { WebviewDirective } from './directives/webview.directive';
+import { DataService } from './providers/data.service';
+import { ElectronService } from './providers/electron.service';
+import { JsonService } from './providers/json.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -31,7 +27,16 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, MonthComponent, HeaderComponent, SidenavComponent, CalendarComponent, ModalComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    MonthComponent,
+    HeaderComponent,
+    SidenavComponent,
+    CalendarComponent,
+    ModalComponent,
+    WebviewDirective
+  ],
   imports: [
     BrowserModule,
     FormsModule,

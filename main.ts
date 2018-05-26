@@ -1,14 +1,10 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { BrowserWindow, app, screen } from 'electron';
 import * as path from 'path';
+import * as url from 'url';
 
 let win, serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
-import * as url from 'url';
-
-if (serve) {
-  require('electron-reload')(__dirname, {});
-}
 
 function createWindow() {
   const electronScreen = screen;
@@ -22,19 +18,20 @@ function createWindow() {
     height: size.height
   });
 
-  // and load the index.html of the app.
-  win.loadURL(
-    url.format({
-      protocol: 'file:',
-      pathname: path.join(__dirname, '/index.html'),
-      slashes: true
-    })
-  );
-
-  // Open the DevTools.
   if (serve) {
-    win.webContents.openDevTools();
+    require('electron-reload')(__dirname, {
+      electron: require(`${__dirname}/node_modules/electron`)
+    });
+    win.loadURL('http://localhost:4200');
+  } else {
+    win.loadURL(url.format({
+      pathname: path.join(__dirname, 'dist/index.html'),
+      protocol: 'file:',
+      slashes: true
+    }));
   }
+
+  win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -51,11 +48,6 @@ try {
   // Some APIs can only be used after this event occurs.
   app.on('ready', createWindow);
 
-  // Disable menubar when window created.
-  app.on('browser-window-created', function(e, window) {
-    window.setMenu(null);
-  });
-
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
     // On OS X it is common for applications and their menu bar
@@ -64,6 +56,7 @@ try {
       app.quit();
     }
   });
+
   app.on('activate', () => {
     // On OS X it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
@@ -71,6 +64,7 @@ try {
       createWindow();
     }
   });
+
 } catch (e) {
   // Catch Error
   // throw e;

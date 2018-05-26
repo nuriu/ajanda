@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ElectronService } from './providers/electron.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AppConfig } from '../environments/environment';
+import { ElectronService } from './providers/electron.service';
 
 @Component({
   selector: 'app-root',
@@ -8,17 +9,14 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(public electronService: ElectronService,
-    private translate: TranslateService) {
-
+  constructor(public electronService: ElectronService, private translate: TranslateService) {
     translate.setDefaultLang('en');
+    console.log('AppConfig', AppConfig);
 
     if (electronService.isElectron()) {
       console.log('Mode electron');
-      // Check if electron is correctly injected (see externals in webpack.config.js)
-      console.log('c', electronService.ipcRenderer);
-      // Check if nodeJs childProcess is correctly injected (see externals in webpack.config.js)
-      console.log('c', electronService.childProcess);
+      console.log('Electron ipcRenderer', electronService.ipcRenderer);
+      console.log('NodeJS childProcess', electronService.childProcess);
     } else {
       console.log('Mode web');
     }

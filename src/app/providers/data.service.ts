@@ -1,17 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-
-import * as fs from 'fs';
-import * as moment from 'moment';
-import * as uuidv4 from 'uuid/v4';
-
-import { JsonService } from './json.service';
-
-import { Label } from '../models/models';
-import { Event } from '../models/models';
-import { Task } from '../models/models';
-import { DataFile } from '../models/models'
 import { isNullOrUndefined } from 'util';
+import * as uuidv4 from 'uuid/v4';
+import { DataFile, Event, Label, Task } from '../models/models';
+import { ElectronService } from './electron.service';
+import { JsonService } from './json.service';
 
 @Injectable()
 export class DataService {
@@ -19,27 +12,39 @@ export class DataService {
   private dataFilePath: string;
   private db: DataFile;
 
-  constructor(private router: Router, private js: JsonService) { }
+  constructor(private router: Router, private electron: ElectronService, private js: JsonService) {}
 
   /**
    * Returns label records.
    */
   getLabels(): Array<Label> {
-    if (this.db) { return this.db.LABELS; } else { return null; }
+    if (this.db) {
+      return this.db.LABELS;
+    } else {
+      return null;
+    }
   }
 
   /**
    * Returns event records.
    */
   getEvents(): Array<Event> {
-    if (this.db) { return this.db.EVENTS; } else { return null; }
+    if (this.db) {
+      return this.db.EVENTS;
+    } else {
+      return null;
+    }
   }
 
   /**
    * Returns task records.
    */
   getTasks(): Array<Task> {
-    if (this.db) { return this.db.TASKS; } else { return null; }
+    if (this.db) {
+      return this.db.TASKS;
+    } else {
+      return null;
+    }
   }
 
   /**
@@ -61,7 +66,7 @@ export class DataService {
   loadDataFile(dataFilePath: string) {
     this.dataFilePath = dataFilePath;
 
-    const jsonString = fs.readFileSync(this.dataFilePath, 'utf8');
+    const jsonString = this.electron.fs.readFileSync(this.dataFilePath, 'utf8');
 
     if (this.js.isValid(jsonString)) {
       this.db = JSON.parse(jsonString);
@@ -119,7 +124,7 @@ export class DataService {
    */
   overwriteDataFile() {
     if (!isNullOrUndefined(this.dataFilePath)) {
-      fs.writeFile(this.dataFilePath, JSON.stringify(this.db), err => {
+      this.electron.fs.writeFile(this.dataFilePath, JSON.stringify(this.db), err => {
         if (err) {
           console.error(err);
         }

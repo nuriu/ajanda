@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -6,24 +6,21 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
-  @Input()
-  id: string;
-  @Input()
-  title: string;
+  @Input() id: string;
+  @Input() title: string;
 
-  @Output()
-  onSubmit = new EventEmitter();
+  @Output() Submit = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
-  private submit() {
+  submit() {
     this.close();
-    this.onSubmit.emit();
+    this.Submit.emit();
   }
 
-  private close() {
+  close() {
     document.getElementById(this.id).classList.remove('active');
   }
 }

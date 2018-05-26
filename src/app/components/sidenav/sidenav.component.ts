@@ -1,7 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-
-import { Label, Event, Task } from '../../models/models';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { Event, Label, Task } from '../../models/models';
 import { DataService } from '../../providers/data.service';
 
 @Component({
@@ -10,8 +8,7 @@ import { DataService } from '../../providers/data.service';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
-  @Input()
-  labels: Array<Label>;
+  @Input() labels: Array<Label>;
 
   constructor(private db: DataService) { }
 
@@ -35,12 +32,14 @@ export class SidenavComponent implements OnInit {
     const d = (<HTMLInputElement>document.getElementById('label-description')).value;
 
     if (n && c) {
-      this.db.addLabel(new Label({
-        Id: '',
-        Name: n,
-        ColorCode: c,
-        Description: d
-      }));
+      this.db.addLabel(
+        new Label({
+          Id: '',
+          Name: n,
+          ColorCode: c,
+          Description: d
+        })
+      );
     } else {
       // TODO: show error toast.
     }
@@ -55,13 +54,15 @@ export class SidenavComponent implements OnInit {
     const fd = (<HTMLInputElement>document.getElementById('event-finish-date')).valueAsDate;
 
     if (t && sd && fd) {
-      this.db.addEvent(new Event({
-        Id: '',
-        Title: t,
-        StartDate: sd,
-        FinishDate: fd,
-        Labels: new Array<Label>()
-      }));
+      this.db.addEvent(
+        new Event({
+          Id: '',
+          Title: t,
+          StartDate: sd,
+          FinishDate: fd,
+          Labels: new Array<Label>()
+        })
+      );
     } else {
       // TODO: show error toast.
     }
@@ -77,13 +78,15 @@ export class SidenavComponent implements OnInit {
     const d = (<HTMLInputElement>document.getElementById('task-description')).value;
 
     if (n && fd) {
-      this.db.addTask(new Task({
-        Id: '',
-        Name: n,
-        FinishDate: fd,
-        RepeatDays: rpd,
-        Description: d
-      }));
+      this.db.addTask(
+        new Task({
+          Id: '',
+          Name: n,
+          FinishDate: fd,
+          RepeatDays: rpd,
+          Description: d
+        })
+      );
     } else {
       // TODO: show error toast.
     }

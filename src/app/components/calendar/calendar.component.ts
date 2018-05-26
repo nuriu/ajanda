@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-
 import * as moment from 'moment';
-
-import { Day, CalendarBlock } from '../../models/models';
+import { CalendarBlock, Day } from '../../models/models';
 
 @Component({
   selector: 'app-calendar',
@@ -10,18 +8,16 @@ import { Day, CalendarBlock } from '../../models/models';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
-  @Input()
-  y: number;
-  @Input()
-  m: number;
+  @Input() y: number;
+  @Input() m: number;
+  data: Array<CalendarBlock>;
 
   private _m: moment.Moment;
   private blockCount: number;
-  private data: Array<CalendarBlock>;
   private startingWeekDay: number;
   private dayCount: number;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this._m = moment().startOf('month');
@@ -29,12 +25,12 @@ export class CalendarComponent implements OnInit {
   }
 
   nextMonth() {
-    this._m = this._m.add({months: 1});
+    this._m = this._m.add({ months: 1 });
     this.syncronize();
   }
 
   previousMonth() {
-    this._m = this._m.subtract({months: 1});
+    this._m = this._m.subtract({ months: 1 });
     this.syncronize();
   }
 
@@ -46,27 +42,35 @@ export class CalendarComponent implements OnInit {
     this.startingWeekDay = this._m.isoWeekday();
     this.dayCount = this._m.daysInMonth();
 
-    (this.startingWeekDay > 4 && this.dayCount > 29) ? this.blockCount = 42 : this.blockCount = 35;
+    this.startingWeekDay > 4 && this.dayCount > 29
+      ? (this.blockCount = 42)
+      : (this.blockCount = 35);
 
     // fill calendar blocks
     for (let i = 1; i <= this.blockCount; i++) {
       if (i < this.startingWeekDay) {
-        this.data.push(new CalendarBlock({
-          isAvailable: false
-        }));
-      } else if (i < this.startingWeekDay + this.dayCount) {
-        this.data.push(new CalendarBlock({
-          isAvailable: true,
-          Day: new Day({
-            Nu: (i === 1) ? 1 : i - (this.startingWeekDay - 1),
-            Events: null,
-            Tasks: null
+        this.data.push(
+          new CalendarBlock({
+            isAvailable: false
           })
-        }));
+        );
+      } else if (i < this.startingWeekDay + this.dayCount) {
+        this.data.push(
+          new CalendarBlock({
+            isAvailable: true,
+            Day: new Day({
+              Nu: i === 1 ? 1 : i - (this.startingWeekDay - 1),
+              Events: null,
+              Tasks: null
+            })
+          })
+        );
       } else {
-        this.data.push(new CalendarBlock({
-          isAvailable: false
-        }));
+        this.data.push(
+          new CalendarBlock({
+            isAvailable: false
+          })
+        );
       }
     }
   }

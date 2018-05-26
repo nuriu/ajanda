@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
-
+import { Router } from '@angular/router';
 import { DataService } from '../../providers/data.service';
+
 
 @Component({
   selector: 'app-home',
@@ -11,7 +11,7 @@ import { DataService } from '../../providers/data.service';
 export class HomeComponent implements OnInit {
 
   constructor(private router: Router,
-              private db: DataService) { }
+    private db: DataService) { }
 
   ngOnInit() { }
 
