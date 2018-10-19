@@ -1,7 +1,7 @@
 {
   "productName": "ajanda",
   "directories": {
-    "output": "app-builds"
+    "output": "release/"
   },
   "files": [
     "**/*",
@@ -21,20 +21,14 @@
   ],
   "win": {
     "icon": "dist",
-    "target": [
-      "portable"
-    ]
+    "target": ["portable"]
   },
   "mac": {
     "icon": "dist",
-    "target": [
-      "dmg"
-    ]
+    "target": ["dmg"]
   },
   "linux": {
     "icon": "dist",
-    "target": [
-      "AppImage"
-    ]
+    "target": ["AppImage"]
   }
 }
