@@ -12,99 +12,16 @@
   <li class="divider"></li>
 
   <li class="nav-item">
-    <a (click)="openModal('event-modal')">{{ 'MENU.NEW_EVENT' | translate }}</a>
+    <a>{{ 'MENU.NEW_EVENT' | translate }}</a>
   </li>
 
-  <app-modal [id]="'event-modal'" [title]="'MENU.NEW_EVENT' | translate" (onSubmit)="addEvent()">
-    <form>
-      <div class="form-group">
-        <label class="form-label" for="event-title">{{ 'EVENT_TITLE' | translate }}:</label>
-        <input class="form-input" id="event-title" [placeholder]="'EVENT_TITLE' | translate" type="text">
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="event-start-date">{{ 'START_DATE' | translate }}:</label>
-        <input class="form-input" id="event-start-date" [placeholder]="'START_DATE' | translate" type="date">
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="event-finish-date">{{ 'FINISH_DATE' | translate }}:</label>
-        <input class="form-input" id="event-finish-date" [placeholder]="'FINISH_DATE' | translate" type="date">
-      </div>
-      <!-- TODO: implement label picker. -->
-      <!-- <div class="form-group">
-        <label class="form-label" for="label-color-code">{{ 'COLOR_CODE' | translate }}:</label>
-        <input class="form-input" id="label-color-code" [placeholder]="'COLOR_CODE' | translate" type="text">
-      </div> -->
-    </form>
-  </app-modal>
-
   <li class="nav-item">
-    <a (click)="openModal('task-modal')">{{ 'MENU.NEW_TASK' | translate }}</a>
+    <a>{{ 'MENU.NEW_TASK' | translate }}</a>
   </li>
 
-  <app-modal [id]="'task-modal'" [title]="'MENU.NEW_TASK' | translate" (onSubmit)="addTask()">
-    <form>
-      <div class="form-group">
-        <label class="form-label" for="task-name">{{ 'TASK_NAME' | translate }}:</label>
-        <input class="form-input" id="task-name" [placeholder]="'TASK_NAME' | translate" type="text">
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="task-finish-date">{{ 'FINISH_DATE' | translate }}:</label>
-        <input class="form-input" id="task-finish-date" [placeholder]="'FINISH_DATE' | translate" type="date">
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="task-repeat-days">{{ 'REPEAT_DAYS' | translate }} ({{ 'OPTIONAL' | translate }}):</label>
-        <input class="form-input" id="task-repeat-days" [placeholder]="'REPEAT_DAYS' | translate" type="number">
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="task-description">{{ 'DESCRIPTION' | translate }} ({{ 'OPTIONAL' | translate }}):</label>
-        <input class="form-input" id="task-description" [placeholder]="'DESCRIPTION' | translate" type="text">
-      </div>
-      <!-- TODO: implement label picker. -->
-      <!-- <div class="form-group">
-        <label class="form-label" for="label-color-code">{{ 'COLOR_CODE' | translate }}:</label>
-        <input class="form-input" id="label-color-code" [placeholder]="'COLOR_CODE' | translate" type="text">
-      </div> -->
-    </form>
-  </app-modal>
-
   <li class="nav-item">
-    <a (click)="openModal('label-modal')">{{ 'MENU.NEW_LABEL' | translate }}</a>
-  </li>
-
-  <app-modal [id]="'label-modal'" [title]="'MENU.NEW_LABEL' | translate" (onSubmit)="addLabel()">
-    <form>
-      <div class="form-group">
-        <label class="form-label" for="label-name">{{ 'LABEL_NAME' | translate }}:</label>
-        <input class="form-input" id="label-name" [placeholder]="'LABEL_NAME' | translate" type="text">
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="label-color-code">{{ 'COLOR_CODE' | translate }}:</label>
-        <input class="form-input" id="label-color-code" [placeholder]="'COLOR_CODE' | translate" type="color">
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="label-description">{{ 'DESCRIPTION' | translate }} ({{ 'OPTIONAL' | translate }}):</label>
-        <input class="form-input" id="label-description" [placeholder]="'DESCRIPTION' | translate" type="text">
-      </div>
-    </form>
-  </app-modal>
-
-  <li class="divider"></li>
-
-  <!-- TODO: implement label filter -->
-  <li class="nav-item">
-    <a>{{ 'MENU.FILTER' | translate }}</a>
-    <ul class="nav">
-      <li class="nav-item" *ngFor="let label of labels">
-        <a class="label text-light" [style.background]="label.ColorCode">{{ label.Name }}</a>
-      </li>
-    </ul>
+    <a>{{ 'MENU.NEW_LABEL' | translate }}</a>
   </li>
 
   <li class="divider"></li>
-
-  <li class="nav-item">
-    <a (click)="saveData()">{{ 'MENU.SAVE_DATA_FILE' | translate }}</a>
-  </li>
 </ul>

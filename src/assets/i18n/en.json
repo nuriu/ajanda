@@ -1,15 +1,4 @@
 {
-  "MENU": {
-    "TITLE": "MENU",
-    "MONTH_VIEW": "Month View",
-    "WEEK_VIEW": "Week View",
-    "DAY_VIEW": "Day View",
-    "FILTER": "Filter",
-    "NEW_EVENT": "Add new event",
-    "NEW_TASK": "Add new task",
-    "NEW_LABEL": "Add new label",
-    "SAVE_DATA_FILE": "Save Data File"
-  },
   "DAYS": {
     "1": "Monday",
     "2": "Tuesday",
@@ -37,15 +26,5 @@
   "LOAD_DATA_FILE": "Load Selected Data File",
   "NEW_DATA_FILE": "Create New Data File",
   "SUBMIT": "Submit",
-  "CLOSE": "Close",
-  "LABEL_NAME": "Label Name",
-  "COLOR_CODE": "Color Code",
-  "DESCRIPTION": "Description",
-  "EVENT_TITLE": "Event Title",
-  "START_DATE": "Start Date",
-  "FINISH_DATE": "Finish Date",
-  "LABELS": "Labels",
-  "TASK_NAME": "Task Name",
-  "REPEAT_DAYS": "Repeat Per Days",
-  "OPTIONAL": "Optional"
+  "CLOSE": "Close"
 }

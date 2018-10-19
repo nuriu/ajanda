@@ -10,13 +10,10 @@ import 'zone.js/dist/zone-mix';
 import '../polyfills';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CalendarComponent } from './components/calendar/calendar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
-import { ModalComponent } from './components/modal/modal.component';
 import { MonthComponent } from './components/month/month.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { WebviewDirective } from './directives/webview.directive';
 import { DataService } from './providers/data.service';
 import { ElectronService } from './providers/electron.service';
 import { JsonService } from './providers/json.service';
@@ -27,16 +24,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    MonthComponent,
-    HeaderComponent,
-    SidenavComponent,
-    CalendarComponent,
-    ModalComponent,
-    WebviewDirective
-  ],
+  declarations: [AppComponent, HomeComponent, MonthComponent, HeaderComponent, SidenavComponent],
   imports: [
     BrowserModule,
     FormsModule,

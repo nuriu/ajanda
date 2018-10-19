@@ -4,7 +4,7 @@ import { ElectronService } from './electron.service';
 
 @Injectable()
 export class JsonService {
-  constructor(private electron: ElectronService) { }
+  constructor(private electron: ElectronService) {}
 
   isValid(data: string): boolean {
     try {
