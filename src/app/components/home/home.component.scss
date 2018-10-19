@@ -1,10 +1,19 @@
-.container {
+div.container {
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .empty {
-    background: none;
+  div.columns {
+    height: 100%;
+    #left-column {
+      background-color: #f3f5f7;
+    }
+    #center-column {
+      background-color: #f7f8fa;
+      border-left: 1px solid #dedfe0;
+      box-shadow: -2px 0px 15px 5px #dedfe042;
+    }
+    #right-column {
+      background-color: #ffffff;
+      border-left: 1px solid #dedfe0;
+      box-shadow: -3px 0px 15px 5px #dedfe042;
+    }
   }
 }
