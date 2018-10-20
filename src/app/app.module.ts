@@ -10,6 +10,7 @@ import 'zone.js/dist/zone-mix';
 import '../polyfills';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 import { HomeComponent } from './components/home/home.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
@@ -23,7 +24,13 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, WelcomeComponent, SidenavComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    WelcomeComponent,
+    SidenavComponent,
+    HomeComponent,
+    CalendarComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,

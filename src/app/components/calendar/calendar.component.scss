@@ -1,0 +1,26 @@
+.calendar {
+  border: none;
+  min-width: unset;
+  .calendar-nav.navbar {
+    background: unset;
+    padding: unset;
+    font-size: unset;
+  }
+  .calendar-header {
+    border: none;
+    background: unset;
+    font-size: 0.6rem;
+  }
+  .calendar-body {
+    padding: unset;
+    .calendar-range::before {
+      background: #eaeaea90;
+    }
+    .calendar-date {
+      padding: 0 0 0.3rem 0.3rem;
+      .date-item {
+        font-size: 0.6rem;
+      }
+    }
+  }
+}
