@@ -14,9 +14,9 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { HomeComponent } from './components/home/home.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
-import { DataService } from './providers/data.service';
-import { ElectronService } from './providers/electron.service';
-import { JsonService } from './providers/json.service';
+import { DataService } from './services/data.service';
+import { ElectronService } from './services/electron.service';
+import { JsonService } from './services/json.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
