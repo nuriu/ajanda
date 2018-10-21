@@ -102,6 +102,7 @@ export class CalendarComponent implements OnInit {
    * Presents previous month.
    */
   prevMonth() {
+    this.M = this.M.startOf('M');
     this.M = this.M.subtract(1, 'M');
     this.daysInMonth = this.M.daysInMonth();
     this.fillDayArray();
@@ -112,6 +113,7 @@ export class CalendarComponent implements OnInit {
    * Presents next month.
    */
   nextMonth() {
+    this.M = this.M.startOf('M');
     this.M = this.M.add(1, 'M');
     this.daysInMonth = this.M.daysInMonth();
     this.fillDayArray();
@@ -124,7 +126,7 @@ export class CalendarComponent implements OnInit {
    * we should present it with adding a css class. (date-today)
    */
   checkCurrentDay() {
-    if (moment().year === this.M.year && moment().month() === this.M.month()) {
+    if (moment().year() === this.M.year() && moment().month() === this.M.month()) {
       this.M = moment();
       this.currentDay = this.M.date();
     } else {
