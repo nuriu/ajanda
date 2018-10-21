@@ -16,7 +16,6 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { DataService } from './services/data.service';
 import { ElectronService } from './services/electron.service';
-import { JsonService } from './services/json.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -44,7 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [ElectronService, JsonService, DataService],
+  providers: [ElectronService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
