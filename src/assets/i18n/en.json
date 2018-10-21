@@ -1,7 +1,4 @@
 {
-  "SELECT_DATA_FILE": "Select a data (.ajanda) file:",
-  "LOAD_DATA_FILE": "Load Selected Data File",
-  "NEW_DATA_FILE": "Create New Data File",
-  "SUBMIT": "Submit",
-  "CLOSE": "Close"
+  "LOAD_DATA_FILE": "Load Data File",
+  "NEW_DATA_FILE": "Create New Data File"
 }

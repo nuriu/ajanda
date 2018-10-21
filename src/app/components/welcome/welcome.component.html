@@ -1,16 +1,10 @@
 <div class="container bg-dark">
   <div class="empty">
-    <div class="empty-icon">
-      <i class="icon icon-3x icon-upload text-gray"></i>
+    <div class="btn-group btn-group-block">
+      <button class="btn btn-lg btn-primary input-group-btn" (click)="loadDataFile()">{{
+        'LOAD_DATA_FILE' | translate }}</button>
+      <button class="btn btn-lg btn-secondary input-group-btn" (click)="newDataFile()">{{ 'NEW_DATA_FILE' | translate
+        }}</button>
     </div>
-    <p class="empty-title h3 text-gray">{{ 'SELECT_DATA_FILE' | translate }}</p>
-    <form id="database-form">
-      <input class="form-input" id="database-input" type="file">
-      <br />
-      <div class="btn-group btn-group-block">
-        <button class="btn btn-lg btn-primary input-group-btn" (click)="loadDataFile()">{{ 'LOAD_DATA_FILE' | translate }}</button>
-        <button class="btn btn-lg btn-secondary input-group-btn" (click)="newDataFile()">{{ 'NEW_DATA_FILE' | translate }}</button>
-      </div>
-    </form>
   </div>
 </div>

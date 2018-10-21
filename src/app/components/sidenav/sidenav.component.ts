@@ -7,7 +7,11 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
+  dbName: string;
+
   constructor(private db: DataService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.dbName = this.db.getDbName();
+  }
 }

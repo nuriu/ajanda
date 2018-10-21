@@ -23,7 +23,24 @@ export class ElectronService {
     }
   }
 
-  isElectron() {
+  isElectron(): boolean {
     return window && window.process && window.process.type;
+  }
+
+  /**
+   * Shows open file dialog for database file loading purposes.
+   */
+  showOpenDBDialog(): Array<string> {
+    if (this.isElectron()) {
+      return this.remote.dialog.showOpenDialog({
+        properties: ['openFile'],
+        filters: [
+          {
+            name: 'Ajanda Files (*.ajanda)',
+            extensions: ['ajanda']
+          }
+        ]
+      });
+    }
   }
 }

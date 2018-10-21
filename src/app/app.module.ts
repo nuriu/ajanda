@@ -47,3 +47,5 @@ export function HttpLoaderFactory(http: HttpClient) {
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+// TODO: implement logger service.
