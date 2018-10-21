@@ -16,6 +16,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { DataService } from './services/data.service';
 import { ElectronService } from './services/electron.service';
+import { LoggerService } from './services/logger.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -43,9 +44,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [ElectronService, DataService],
+  providers: [LoggerService, ElectronService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
-
-// TODO: implement logger service.

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import 'moment/locale/en-gb';
-// import 'moment/locale/tr';
+import { EVENT_TYPES, LoggerService, LOG_LEVELS } from '../../services/logger.service';
 
 @Component({
   selector: 'app-sidenav-calendar',
@@ -17,9 +16,11 @@ export class CalendarComponent implements OnInit {
   printedDaysFromNextMonth: number;
   currentDay: number;
 
-  constructor() {}
+  constructor(private logger: LoggerService) {}
 
   ngOnInit() {
+    this.logger.log('CalendarComponent initialized.', LOG_LEVELS.LIFECYCLE);
+
     this.M = moment();
     this.daysInMonth = this.M.daysInMonth();
     this.fillDayArray();
@@ -102,6 +103,8 @@ export class CalendarComponent implements OnInit {
    * Presents previous month.
    */
   prevMonth() {
+    this.logger.log('Switched to previous month.', LOG_LEVELS.EVENT, EVENT_TYPES.MONTH_SWITCH);
+
     this.M = this.M.startOf('M');
     this.M = this.M.subtract(1, 'M');
     this.daysInMonth = this.M.daysInMonth();
@@ -113,6 +116,8 @@ export class CalendarComponent implements OnInit {
    * Presents next month.
    */
   nextMonth() {
+    this.logger.log('Switched to next month.', LOG_LEVELS.EVENT, EVENT_TYPES.MONTH_SWITCH);
+
     this.M = this.M.startOf('M');
     this.M = this.M.add(1, 'M');
     this.daysInMonth = this.M.daysInMonth();
@@ -126,10 +131,14 @@ export class CalendarComponent implements OnInit {
    * we should present it with adding a css class. (date-today)
    */
   checkCurrentDay() {
+    this.logger.log('Checking if current day exists in the selected month.');
+
     if (moment().year() === this.M.year() && moment().month() === this.M.month()) {
+      this.logger.log('Current day exists in the selected month.');
       this.M = moment();
       this.currentDay = this.M.date();
     } else {
+      this.logger.log('Current day does not exists in the selected month.');
       this.currentDay = -1;
     }
   }

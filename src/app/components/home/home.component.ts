@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
+import { LoggerService, LOG_LEVELS } from '../../services/logger.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,9 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(private db: DataService) {}
+  constructor(private db: DataService, private logger: LoggerService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.logger.log('HomeComponent initialized.', LOG_LEVELS.LIFECYCLE);
+  }
 }

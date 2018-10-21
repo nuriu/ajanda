@@ -43,4 +43,35 @@ export class ElectronService {
       });
     }
   }
+
+  /**
+   * Check if file or folder at path is exists or not.
+   * @param path Path to check.
+   */
+  isPathExists(path: string): boolean {
+    return this.fs.existsSync(path);
+  }
+
+  /**
+   * Creates folder at given path.
+   * @param path Folder path.
+   */
+  createFolder(path: string) {
+    try {
+      this.fs.mkdirSync(path);
+    } catch (err) {
+      if (err.code !== 'EEXIST') {
+        throw err;
+      }
+    }
+  }
+
+  /**
+   * Writes data to file. Creates file if it isn't exists.
+   * @param filePath File path.
+   * @param data Data to write.
+   */
+  writeDataToFile(filePath: string, data: any) {
+    this.fs.appendFileSync(filePath, data);
+  }
 }
