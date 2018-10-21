@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import * as low from 'lowdb';
 // import { generate } from 'shortid';
 import * as FileAsync from 'lowdb/adapters/FileAsync';
-import { LoggerService, LOG_LEVELS } from './logger.service';
+import * as PATH from 'path';
+import { EVENT_TYPES, LoggerService, LOG_LEVELS } from './logger.service';
 @Injectable()
 export class DataService {
   private db: low.LowdbAsync<any>;
@@ -19,7 +20,11 @@ export class DataService {
    * @param path Path to database (.ajanda file).
    */
   async loadDatabase(path: string) {
-    this.logger.log('Loading database file from: ' + path, LOG_LEVELS.EVENT);
+    this.logger.log(
+      'Loading database file from: ' + path,
+      LOG_LEVELS.EVENT,
+      EVENT_TYPES.OPEN_DB_FILE
+    );
 
     this.adapter = new FileAsync(path);
     this.db = await low(this.adapter);
@@ -29,13 +34,17 @@ export class DataService {
   /**
    * Creates new database named data.ajanda.
    */
-  async newDatabase() {
-    this.logger.log('Creating new database file at: ./data.ajanda', LOG_LEVELS.EVENT);
+  async newDatabase(path: string) {
+    this.logger.log(
+      'Creating new database file at: ' + path,
+      LOG_LEVELS.EVENT,
+      EVENT_TYPES.CREATE_DB_FILE
+    );
 
-    this.adapter = new FileAsync('data.ajanda');
+    this.adapter = new FileAsync(path);
     this.db = await low(this.adapter);
     this.db.defaults(this.schema).write();
-    this.db.set('name', 'data.ajanda').write();
+    this.db.set('name', PATH.basename(path)).write();
   }
 
   /**

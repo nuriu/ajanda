@@ -1,4 +1,7 @@
 {
   "LOAD_DATA_FILE": "Load Data File",
-  "NEW_DATA_FILE": "Create New Data File"
+  "NEW_DATA_FILE": "Create New Data File",
+  "OPEN_DATA_FILE_DIALOG_TITLE": "Select .ajanda database file to open",
+  "SAVE_DATA_FILE_DIALOG_TITLE": "Select folder and give a name to .ajanda database file to save",
+  "FILE_DIALOG_EXTENSION_TEXT": "Ajanda Files (*.ajanda)"
 }

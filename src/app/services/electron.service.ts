@@ -29,15 +29,39 @@ export class ElectronService {
 
   /**
    * Shows open file dialog for database file loading purposes.
+   * @param title Dialog title.
+   * @param extensions Supported extensions.
+   * @param extensionText Extension box description text. i.e. Ajanda files (*.ajanda)
    */
-  showOpenDBDialog(): Array<string> {
+  showOpenDBDialog(title: string, extensions: string[], extensionText: string): Array<string> {
     if (this.isElectron()) {
       return this.remote.dialog.showOpenDialog({
+        title: title,
         properties: ['openFile'],
         filters: [
           {
-            name: 'Ajanda Files (*.ajanda)',
-            extensions: ['ajanda']
+            name: extensionText,
+            extensions: extensions
+          }
+        ]
+      });
+    }
+  }
+
+  /**
+   * Shows save file dialog for database file saving purposes.
+   * @param title Dialog title.
+   * @param extensions Supported extensions.
+   * @param extensionText Extension box description text. i.e. Ajanda files (*.ajanda)
+   */
+  showSaveDBDialog(title: string, extensions: string[], extensionText: string): string {
+    if (this.isElectron()) {
+      return this.remote.dialog.showSaveDialog({
+        title: title,
+        filters: [
+          {
+            name: extensionText,
+            extensions: extensions
           }
         ]
       });
