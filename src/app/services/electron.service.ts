@@ -91,6 +91,24 @@ export class ElectronService {
   }
 
   /**
+   * Clear folder contents at given path.
+   * @param path Folder path.
+   */
+  clearFolder(path: string) {
+    try {
+      fs.readdir(path, (err, files) => {
+        if (!err) {
+          for (const file of files) {
+            fs.unlinkSync(path + '/' + file);
+          }
+        }
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  /**
    * Writes data to file. Creates file if it isn't exists.
    * @param filePath File path.
    * @param data Data to write.

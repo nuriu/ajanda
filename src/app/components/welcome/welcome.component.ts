@@ -26,7 +26,6 @@ export class WelcomeComponent implements OnInit {
   /**
    * Create new database file.
    */
-
   newDataFile() {
     this.logger.log(
       'Create new data file button at welcome page.',

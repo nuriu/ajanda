@@ -37,10 +37,12 @@ export class LoggerService {
   }
 
   /**
-   * Removes log folder from disk.
+   * Removes log files from disk.
    */
   clearLogFolder() {
-    // TODO: implement removing log folder from disk.
+    if (this.electron.isPathExists('./LOGS/')) {
+      this.electron.clearFolder('./LOGS/');
+    }
   }
 }
 
