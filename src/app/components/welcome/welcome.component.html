@@ -1,10 +1,19 @@
-<div class="container bg-dark">
-  <div class="empty">
-    <div class="btn-group btn-group-block">
-      <button class="btn btn-lg btn-primary input-group-btn" (click)="loadDataFile()">{{
-        'LOAD_DATA_FILE' | translate }}</button>
-      <button class="btn btn-lg btn-secondary input-group-btn" (click)="newDataFile()">{{ 'NEW_DATA_FILE' | translate
-        }}</button>
+<div class="bg-dark flex-centered container">
+
+  <!-- <img src="" alt="Logo"> -->
+
+  <div class="columns">
+    <div class="column">
+      <button class="btn btn-lg btn-link d-block" (click)="newDataFile()">{{ 'NEW_DATA_FILE' | translate }}</button>
+      <button class="btn btn-lg btn-link d-block" (click)="loadDataFile()">{{ 'OPEN_DATA_FILE' | translate }}</button>
+      <h6>{{ 'RECENTLY_OPENED_FILES' | translate }}</h6>
+      <button *ngFor="let file of recentlyOpenedFiles" class="btn btn-lg btn-link d-block" (click)="loadDataFile(file)">
+        {{ file }}
+      </button>
+    </div>
+    <div class="divider-vert"></div>
+    <div class="column">
+      <h4>{{ 'SETTINGS' | translate }}</h4>
     </div>
   </div>
 </div>

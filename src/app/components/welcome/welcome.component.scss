@@ -1,10 +1,18 @@
 .container {
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .empty {
-    background: none;
+  .column {
+    padding: 2rem 5rem;
+    h6 {
+      padding: 1rem 0rem;
+    }
+    .btn.btn-link {
+      color: white;
+    }
+    .btn.btn-link:focus {
+      color: lightblue;
+    }
+  }
+  .divider-vert::before {
+    border-left: 0.05rem solid #77797d;
   }
 }

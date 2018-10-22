@@ -8,6 +8,7 @@ import { Schema } from '../models/Schema';
 import { Tag } from '../models/Tag';
 import { Task } from '../models/Task';
 import { EVENT_TYPES, LoggerService, LOG_LEVELS } from './logger.service';
+import { SettingsService } from './settings.service';
 
 @Injectable()
 export class DataService {
@@ -24,9 +25,11 @@ export class DataService {
    */
   private schema: Schema;
 
-  constructor(private logger: LoggerService) {
+  constructor(private logger: LoggerService, private settings: SettingsService) {
     this.schema = new Schema();
   }
+
+  // TODO: REFACTOR loadDatabase and newDatabase to 1 method.
 
   /**
    * Loads database file.
@@ -42,6 +45,7 @@ export class DataService {
     this.adapter = new FileAsync(path);
     this.db = await low(this.adapter);
     this.db.defaults(JSON.parse(JSON.stringify(this.schema))).write();
+    this.settings.addRecentlyOpenedFile(path);
   }
 
   /**
@@ -58,6 +62,7 @@ export class DataService {
     this.db = await low(this.adapter);
     this.db.defaults(JSON.parse(JSON.stringify(this.schema))).write();
     this.db.set('name', PATH.basename(path)).write();
+    this.settings.addRecentlyOpenedFile(path);
   }
 
   /**

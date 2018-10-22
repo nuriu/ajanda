@@ -1,11 +1,13 @@
 {
-  "LOAD_DATA_FILE": "Load Data File",
   "NEW_DATA_FILE": "Create New Data File",
+  "OPEN_DATA_FILE": "Open Data File",
   "OPEN_DATA_FILE_DIALOG_TITLE": "Select .ajanda database file to open",
   "SAVE_DATA_FILE_DIALOG_TITLE": "Select folder and give a name to .ajanda database file to save",
   "FILE_DIALOG_EXTENSION_TEXT": "Ajanda Files (*.ajanda)",
   "CALENDARS": "Calendars",
   "TAGS": "Tags",
   "CALENDAR_NAME": "Calendar name",
-  "TAG_NAME": "Tag name"
+  "TAG_NAME": "Tag name",
+  "RECENTLY_OPENED_FILES": "Recently Opened Files",
+  "SETTINGS": "Settings"
 }

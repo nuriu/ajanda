@@ -101,24 +101,29 @@ export class SettingsService {
    * @param path File path.
    */
   addRecentlyOpenedFile(path: string) {
-    const recentlyOpenedFileCount = this.db
-      .get('recentlyOpenedFiles')
-      .size()
-      .value();
+    const recentlyOpenedFiles = this.db.get('recentlyOpenedFiles').value() as Array<string>;
+
+    // if file already existsin array then first delete it.
+    for (let i = 0; i < recentlyOpenedFiles.length; i++) {
+      const rof = recentlyOpenedFiles[i];
+      if (rof === path) {
+        recentlyOpenedFiles.splice(i, 1);
+      }
+    }
 
     // if there is already 5 elements in
     // recentlyOpenedFiles array then delete first one.
-    if (recentlyOpenedFileCount === 5) {
-      this.db
-        .get('recentlyOpenedFiles[0]')
-        .remove()
-        .write();
+    if (recentlyOpenedFiles.length === 5) {
+      recentlyOpenedFiles.splice(4, 1);
     }
 
-    // add new record.
+    // push new file to beginning of the list.
+    recentlyOpenedFiles.reverse().push(path);
+
+    // save updated records.
     this.db
       .get('recentlyOpenedFiles')
-      .push(path)
+      .assign(recentlyOpenedFiles)
       .write();
   }
 }
