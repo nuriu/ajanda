@@ -25,7 +25,20 @@ export class LoggerService {
 
     // if we aren't in production mode then write message to console as well.
     if (!AppConfig.production) {
-      console.log(finalMessage);
+      switch (level) {
+        case LOG_LEVELS.ERROR:
+          console.error(finalMessage);
+          break;
+        case LOG_LEVELS.WARNING:
+          console.warn(finalMessage);
+          break;
+        case LOG_LEVELS.INFO:
+          console.info(finalMessage);
+          break;
+        default:
+          console.log(finalMessage);
+          break;
+      }
     }
 
     // if folder doesn't exists then create it.
