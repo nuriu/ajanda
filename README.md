@@ -13,8 +13,10 @@ I18n files:
 
 > src/assets/i18n/
 
-Appreciate help on:
+Appreciate the help about:
 
-- UI/UX design.
+- Better UI/UX design.
+- Component and service tests or refactoring for efficiently testable codes.
 - Refactoring for stabilization.
 - Encryption for database file or another database file model which supports encryption.
+- Any further use-case, feature requests or more and better test scenarios.
