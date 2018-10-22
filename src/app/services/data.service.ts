@@ -59,7 +59,7 @@ export class DataService {
   /**
    * Returns name of the database.
    */
-  getDbName() {
+  getDatabaseName() {
     this.logger.log('Requested database name info.');
 
     return this.db.get('name').value();

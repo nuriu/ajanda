@@ -15,6 +15,6 @@ export class SidenavComponent implements OnInit {
   ngOnInit() {
     this.logger.log('SidenavComponent initialized.', LOG_LEVELS.LIFECYCLE);
 
-    this.dbName = this.db.getDbName();
+    this.dbName = this.db.getDatabaseName();
   }
 }
