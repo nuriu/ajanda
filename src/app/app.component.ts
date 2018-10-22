@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import * as moment from 'moment';
 import { AppConfig } from '../environments/environment';
 import { ElectronService } from './services/electron.service';
 import { LoggerService, LOG_LEVELS } from './services/logger.service';
+import { SettingsService } from './services/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,8 @@ export class AppComponent {
   constructor(
     public electronService: ElectronService,
     private translate: TranslateService,
-    private logger: LoggerService
+    private logger: LoggerService,
+    private settings: SettingsService
   ) {
     this.logger.log(
       'Opened application with config: ' + JSON.stringify(AppConfig),
@@ -30,12 +31,9 @@ export class AppComponent {
       this.logger.log('Application mode: WEB', LOG_LEVELS.LIFECYCLE);
     }
 
-    // TODO: make locales changeable from settings.
-    translate.setDefaultLang('en');
-    moment.locale('en');
-
-    // TODO: update log message after settings implementation.
-    this.logger.log('locale set to: en');
-    this.logger.log('moment locale set to: en');
+    // load settings database and set locale.
+    settings.loadDatabase().then(() => {
+      settings.updateRuntimeLocale();
+    });
   }
 }

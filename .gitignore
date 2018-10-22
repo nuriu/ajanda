@@ -51,3 +51,4 @@ Thumbs.db
 # ajanda data files
 *.ajanda
 /LOGS
+ajanda.settings
