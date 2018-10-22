@@ -4,6 +4,7 @@ div.container {
     height: 100%;
     #left-column {
       background-color: #f3f5f7;
+      overflow-y: auto;
     }
     #center-column {
       background-color: #f7f8fa;

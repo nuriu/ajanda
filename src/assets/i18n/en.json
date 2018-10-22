@@ -6,5 +6,6 @@
   "FILE_DIALOG_EXTENSION_TEXT": "Ajanda Files (*.ajanda)",
   "CALENDARS": "Calendars",
   "TAGS": "Tags",
-  "CALENDAR_NAME": "Calendar name"
+  "CALENDAR_NAME": "Calendar name",
+  "TAG_NAME": "Tag name"
 }
