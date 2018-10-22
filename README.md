@@ -15,6 +15,7 @@ I18n files:
 
 Appreciate the help about:
 
+- a Logo? Maybe.
 - Better UI/UX design.
 - Component and service tests or refactoring for efficiently testable codes.
 - Refactoring for stabilization.
