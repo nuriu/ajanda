@@ -3,17 +3,26 @@ import * as low from 'lowdb';
 // import { generate } from 'shortid';
 import * as FileAsync from 'lowdb/adapters/FileAsync';
 import * as PATH from 'path';
+import { Schema } from '../models/Schema';
 import { EVENT_TYPES, LoggerService, LOG_LEVELS } from './logger.service';
 @Injectable()
 export class DataService {
+  /**
+   * lowdb db object.
+   */
   private db: low.LowdbAsync<any>;
+  /**
+   * lowdb adapter.
+   */
   private adapter: low.AdapterAsync<any>;
   /**
    * Base schema for database file.
    */
-  private schema = { name: '', calendars: [], password: '', tags: [], tasks: [] };
+  private schema: Schema;
 
-  constructor(private logger: LoggerService) {}
+  constructor(private logger: LoggerService) {
+    this.schema = new Schema();
+  }
 
   /**
    * Loads database file.
@@ -28,7 +37,7 @@ export class DataService {
 
     this.adapter = new FileAsync(path);
     this.db = await low(this.adapter);
-    this.db.defaults(this.schema).write();
+    this.db.defaults(JSON.parse(JSON.stringify(this.schema))).write();
   }
 
   /**
@@ -43,7 +52,7 @@ export class DataService {
 
     this.adapter = new FileAsync(path);
     this.db = await low(this.adapter);
-    this.db.defaults(this.schema).write();
+    this.db.defaults(JSON.parse(JSON.stringify(this.schema))).write();
     this.db.set('name', PATH.basename(path)).write();
   }
 
