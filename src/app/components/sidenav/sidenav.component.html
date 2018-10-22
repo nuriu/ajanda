@@ -1,5 +1,5 @@
 <div class="file-name">
-  <h4>{{ this.dbName }}</h4>
+  <h4>{{ this.databaseName }}</h4>
 </div>
 
 <div class="divider"></div>
@@ -8,30 +8,19 @@
 
 <div class="divider"></div>
 
-<ul class="nav">
-  <li class="nav-item active">
-    <a href="#">{{ 'MENU.MONTH_VIEW' | translate }}</a>
-  </li>
-  <li class="nav-item">
-    <a href="#">{{ 'MENU.WEEK_VIEW' | translate }}</a>
-  </li>
-  <li class="nav-item">
-    <a href="#">{{ 'MENU.DAY_VIEW' | translate }}</a>
-  </li>
+<h6 class="sidenav-title">{{ 'CALENDARS' | translate }}</h6>
 
-  <li class="divider"></li>
+<div class="input-group" id="calendar-input-area">
+  <input type="text" class="form-input input-sm" [placeholder]="'CALENDAR_NAME' | translate" #cName>
+  <button class="btn btn-primary input-group-btn btn-sm" (click)="handleCalendarAddition(cName.value)">
+    <i class="icon icon-plus"></i>
+  </button>
+</div>
 
-  <li class="nav-item">
-    <a>{{ 'MENU.NEW_EVENT' | translate }}</a>
-  </li>
-
-  <li class="nav-item">
-    <a>{{ 'MENU.NEW_TASK' | translate }}</a>
-  </li>
-
-  <li class="nav-item">
-    <a>{{ 'MENU.NEW_LABEL' | translate }}</a>
-  </li>
-
-  <li class="divider"></li>
-</ul>
+<div class="form-group">
+  <label *ngFor="let calendar of calendars" class="form-radio">
+    <input type="radio" [name]="calendar.id" [checked]="calendar.selected" (click)="handleCalendarSelection(calendar)">
+    <i class="form-icon" [style.background]="calendar.selected == true ? calendar.colorCode : null"></i>
+    {{ calendar.name }}
+  </label>
+</div>
