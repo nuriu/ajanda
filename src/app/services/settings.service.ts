@@ -101,7 +101,7 @@ export class SettingsService {
    * @param path File path.
    */
   addRecentlyOpenedFile(path: string) {
-    const recentlyOpenedFiles = this.db.get('recentlyOpenedFiles').value() as Array<string>;
+    const recentlyOpenedFiles = this.listRecentlyOpenedFiles();
 
     // if file already existsin array then first delete it.
     for (let i = 0; i < recentlyOpenedFiles.length; i++) {
@@ -124,6 +124,28 @@ export class SettingsService {
     this.db
       .get('recentlyOpenedFiles')
       .assign(recentlyOpenedFiles)
+      .write();
+
+    this.logger.log('Added new record to recentlyOpenedFiles: ' + path);
+  }
+
+  /**
+   * Removes path from recentlyOpenedFiles at settings.
+   * @param path File path to remove.
+   */
+  removeRecentlyOpenedFile(path: string) {
+    const records = this.listRecentlyOpenedFiles();
+
+    for (let i = 0; i < records.length; i++) {
+      if (records[i] === path || records[i] === path.replace(/\\/g, '\\\\')) {
+        records.splice(i, 1);
+        this.logger.log('Removed record from recentlyOpenedFiles: ' + path);
+      }
+    }
+
+    this.db
+      .get('recentlyOpenedFiles')
+      .assign(records)
       .write();
   }
 }

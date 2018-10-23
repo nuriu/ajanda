@@ -77,6 +77,7 @@ export class WelcomeComponent implements OnInit {
         });
       } else {
         // TODO: Show error toast: File doesn't exists.
+        this.settings.removeRecentlyOpenedFile(filePath);
       }
     } else {
       this.translate
