@@ -65,12 +65,12 @@ export class SettingsService {
     this.logger.log('Updated app locale to: ' + locale);
 
     this.db
-      .get('locale')
-      .assign(locale)
-      .write();
-
-    // update runtime locales.
-    this.updateRuntimeLocale();
+      .set('locale', locale)
+      .write()
+      .then(() => {
+        // update runtime locale.
+        this.updateRuntimeLocale();
+      });
   }
 
   /**
