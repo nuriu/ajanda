@@ -29,9 +29,7 @@ export class WelcomeComponent implements OnInit {
   ngOnInit() {
     this.logger.log('WelcomeComponent initialized.', LOG_LEVELS.LIFECYCLE);
 
-    /**
-     * Get recently opened files.
-     */
+    // Get recently opened files.
     this.settings.loadDatabase().then(() => {
       this.recentlyOpenedFiles = this.settings.listRecentlyOpenedFiles().reverse();
     });

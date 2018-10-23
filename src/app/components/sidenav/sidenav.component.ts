@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Calendar } from '../../models/Calendar';
 import { Tag } from '../../models/Tag';
 import { DataService } from '../../services/data.service';
@@ -23,7 +24,7 @@ export class SidenavComponent implements OnInit {
    */
   tags: Array<Tag>;
 
-  constructor(private db: DataService, private logger: LoggerService) {
+  constructor(private router: Router, private db: DataService, private logger: LoggerService) {
     this.calendars = new Array<Calendar>();
   }
 
@@ -85,5 +86,13 @@ export class SidenavComponent implements OnInit {
     if (name.trim().length > 0) {
       this.db.createTag(new Tag({ name: name }));
     }
+  }
+
+  /**
+   * Moves to welcome page.
+   */
+  closeFile() {
+    this.logger.log('Navigating to: ./welcome');
+    this.router.navigate(['./welcome']);
   }
 }
