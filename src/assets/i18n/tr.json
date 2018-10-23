@@ -1,0 +1,18 @@
+{
+  "NEW_DATA_FILE": "Veritabanı Dosyası Oluştur",
+  "OPEN_DATA_FILE": "Veritabanı Dosyası Aç",
+  "OPEN_DATA_FILE_DIALOG_TITLE": "Açılacak .ajanda veritabanı dosyasını seçin",
+  "SAVE_DATA_FILE_DIALOG_TITLE": "Ajanda veritabanı dosyasının kaydedileceği klasörü seçip isim girin.",
+  "FILE_DIALOG_EXTENSION_TEXT": "Ajanda Dosyaları (*.ajanda)",
+  "CALENDARS": "Takvimler",
+  "TAGS": "Etiketler",
+  "CALENDAR_NAME": "Takvim adı",
+  "TAG_NAME": "Etiket ismi",
+  "RECENTLY_OPENED_FILES": "Açılan Son Dosyalar",
+  "SETTINGS": "Seçenekler",
+  "LANGUAGE": "Dil Seçiniz",
+  "LOCALES": {
+    "EN": "İngilizce",
+    "TR": "Türkçe"
+  }
+}

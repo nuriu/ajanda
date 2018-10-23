@@ -9,5 +9,10 @@
   "CALENDAR_NAME": "Calendar name",
   "TAG_NAME": "Tag name",
   "RECENTLY_OPENED_FILES": "Recently Opened Files",
-  "SETTINGS": "Settings"
+  "SETTINGS": "Settings",
+  "LANGUAGE": "Select Language",
+  "LOCALES": {
+    "EN": "English",
+    "TR": "Turkish"
+  }
 }
