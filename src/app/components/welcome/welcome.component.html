@@ -14,6 +14,14 @@
     <div class="divider-vert"></div>
     <div class="column">
       <h4>{{ 'SETTINGS' | translate }}</h4>
+      <div class="form-group">
+        <select class="form-select" (change)="handleLocaleChange($event)">
+          <option disabled="disabled">{{ 'LANGUAGE' | translate }}</option>
+          <option *ngFor="let locale of supportedLocales" [value]="locale" [attr.selected]="locale == defaultLocale ? 'selected' : null">
+            {{ 'LOCALES.' + locale.toUpperCase() | translate }}
+          </option>
+        </select>
+      </div>
     </div>
   </div>
 </div>

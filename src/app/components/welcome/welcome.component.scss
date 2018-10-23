@@ -11,6 +11,9 @@
     .btn.btn-link:focus {
       color: lightblue;
     }
+    select {
+      color: black;
+    }
   }
   .divider-vert::before {
     border-left: 0.05rem solid #77797d;

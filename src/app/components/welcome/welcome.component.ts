@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { LOCALES } from '../../models/LOCALES';
 import { DataService } from '../../services/data.service';
 import { ElectronService } from '../../services/electron.service';
 import { EVENT_TYPES, LoggerService, LOG_LEVELS } from '../../services/logger.service';
@@ -16,6 +17,14 @@ export class WelcomeComponent implements OnInit {
    * List of recently opened file paths.
    */
   recentlyOpenedFiles: Array<string>;
+  /**
+   * Default locale that readed from settings file.
+   */
+  defaultLocale: string;
+  /**
+   * Supported locales by application.
+   */
+  supportedLocales: Array<string>;
 
   constructor(
     private router: Router,
@@ -32,6 +41,8 @@ export class WelcomeComponent implements OnInit {
     // Get recently opened files.
     this.settings.loadDatabase().then(() => {
       this.recentlyOpenedFiles = this.settings.listRecentlyOpenedFiles().reverse();
+      this.defaultLocale = this.settings.getPrefferedLocale();
+      this.supportedLocales = LOCALES;
     });
   }
 
@@ -96,5 +107,14 @@ export class WelcomeComponent implements OnInit {
           }
         });
     }
+  }
+
+  /**
+   * Handles locale change from language selection.
+   * @param event Event object of select value change.
+   */
+  handleLocaleChange(event: any) {
+    console.log(event.target.value);
+    this.settings.updatePrefferedLocale(event.target.value);
   }
 }
