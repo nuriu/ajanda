@@ -90,6 +90,21 @@ export class DataService {
   }
 
   /**
+   * Updates object at database.
+   * @param parentKey Object parent key (like table name) where to look for object.
+   * @param updatedObject New object to swap with the old one.
+   */
+  updateObject<T>(parentKey: string, updatedObject: T) {
+    this.logger.log('Updated object info in ' + parentKey + ' for object: ' + updatedObject['id']);
+
+    this.db
+      .get(parentKey)
+      .find({ id: updatedObject['id'] })
+      .assign(updatedObject)
+      .write();
+  }
+
+  /**
    * Adds new calendar to database.
    * @param calendar Calendar object.
    */
@@ -102,20 +117,6 @@ export class DataService {
       .write();
 
     this.logger.log('Created new calendar: ' + JSON.stringify(calendar));
-  }
-
-  /**
-   * Updates calendar object with same id.
-   * @param calendar New calendar object with same id.
-   */
-  updateCalendar(calendar: Calendar) {
-    this.logger.log('Updated calendar info for: ' + calendar.id.toString());
-
-    this.db
-      .get('calendars')
-      .find({ id: calendar.id })
-      .assign(calendar)
-      .write();
   }
 
   /**
@@ -159,20 +160,6 @@ export class DataService {
   }
 
   /**
-   * Updates tag object with same id.
-   * @param tag New tag object with same id.
-   */
-  updateTag(tag: Tag) {
-    this.logger.log('Updated tag info for: ' + tag.id.toString());
-
-    this.db
-      .get('tags')
-      .find({ id: tag.id })
-      .assign(tag)
-      .write();
-  }
-
-  /**
    * Deletes tag from database.
    * @param id Tag id.
    */
@@ -188,7 +175,7 @@ export class DataService {
         if (tagId === id) {
           task.tags.splice(i, 1);
           this.logger.log('Removed tag: ' + id + ' from task: ' + task.id);
-          this.updateTask(task);
+          this.updateObject<Task>('tasks', task);
         }
       }
     });
@@ -224,25 +211,11 @@ export class DataService {
 
     // add task to calendar and update it.
     calendar.tasks.push(task.id);
-    this.updateCalendar(calendar);
+    this.updateObject<Calendar>('calendars', calendar);
 
     this.logger.log(
       'Created new task: ' + JSON.stringify(task) + '. Added to calendar: ' + calendarId
     );
-  }
-
-  /**
-   * Updates task object with same id.
-   * @param task New task object with same id.
-   */
-  updateTask(task: Task) {
-    this.logger.log('Updated task info for: ' + task.id.toString());
-
-    this.db
-      .get('tasks')
-      .find({ id: task.id })
-      .assign(task)
-      .write();
   }
 
   /**
@@ -260,7 +233,7 @@ export class DataService {
         if (taskId === id) {
           calendar.tasks.splice(i, 1);
           this.logger.log('Removed task: ' + id + ' from calendar: ' + calendar.id);
-          this.updateCalendar(calendar);
+          this.updateObject<Calendar>('calendars', calendar);
         }
       }
     });

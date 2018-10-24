@@ -43,7 +43,7 @@ export class SidenavComponent implements OnInit {
   handleCalendarSelection(calendar: Calendar) {
     calendar.selected = !calendar.selected;
 
-    this.db.updateCalendar(calendar);
+    this.db.updateObject<Calendar>('calendars', calendar);
 
     this.logger.log(
       'Calendar selection updated: ' + JSON.stringify(calendar),
@@ -69,7 +69,7 @@ export class SidenavComponent implements OnInit {
   handleTagSelection(tag: Tag) {
     tag.enabled = !tag.enabled;
 
-    this.db.updateTag(tag);
+    this.db.updateObject<Tag>('tags', tag);
 
     this.logger.log(
       'Tag selection updated: ' + JSON.stringify(tag),
