@@ -1,5 +1,6 @@
-export class Task {
-  public id: string;
+import { Entity } from './Entity';
+
+export class Task extends Entity {
   public title: string;
   public body: string;
   public start: string;
@@ -8,6 +9,8 @@ export class Task {
   public isDone: boolean;
 
   public constructor(init?: Partial<Task>) {
+    super();
+
     this.id = '';
     this.title = '';
     this.body = '';
