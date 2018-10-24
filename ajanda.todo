@@ -1,6 +1,6 @@
 Services:
   data.service:
-    ☐ REFACTOR: loadDatabase and newDatabase to 1 method. @created(18-10-24 11:25)
+    ✔ REFACTOR: loadDatabase and newDatabase to 1 method. @created(18-10-24 11:25) @started(18-10-24 11:29) @done(18-10-24 11:30) @lasted(1m37s)
 
 Components:
   welcome.component:

@@ -30,37 +30,30 @@ export class DataService {
   }
 
   /**
-   * Loads database file.
+   * Loads/creates database file.
    * @param path Path to database (.ajanda file).
+   * @param isNew Database is creating or loading existing one.
    */
-  async loadDatabase(path: string) {
-    this.logger.log(
-      'Loading database file from: ' + path,
-      LOG_LEVELS.EVENT,
-      EVENT_TYPES.OPEN_DB_FILE
-    );
-
+  async loadDatabase(path: string, isNew: boolean = false) {
     this.adapter = new FileAsync(path);
     this.db = await low(this.adapter);
     this.db.defaults(JSON.parse(JSON.stringify(this.schema))).write();
     this.settings.addRecentlyOpenedFile(path);
-  }
 
-  /**
-   * Creates new database named data.ajanda.
-   */
-  async newDatabase(path: string) {
-    this.logger.log(
-      'Creating new database file at: ' + path,
-      LOG_LEVELS.EVENT,
-      EVENT_TYPES.CREATE_DB_FILE
-    );
-
-    this.adapter = new FileAsync(path);
-    this.db = await low(this.adapter);
-    this.db.defaults(JSON.parse(JSON.stringify(this.schema))).write();
-    this.db.set('name', PATH.basename(path)).write();
-    this.settings.addRecentlyOpenedFile(path);
+    if (isNew) {
+      this.logger.log(
+        'Creating new database file at: ' + path,
+        LOG_LEVELS.EVENT,
+        EVENT_TYPES.CREATE_DB_FILE
+      );
+      this.db.set('name', PATH.basename(path)).write();
+    } else {
+      this.logger.log(
+        'Loading database file from: ' + path,
+        LOG_LEVELS.EVENT,
+        EVENT_TYPES.OPEN_DB_FILE
+      );
+    }
   }
 
   /**

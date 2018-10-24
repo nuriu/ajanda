@@ -65,7 +65,7 @@ export class WelcomeComponent implements OnInit {
           data.FILE_DIALOG_EXTENSION_TEXT
         );
         if (path) {
-          this.db.newDatabase(path).then(() => {
+          this.db.loadDatabase(path, true).then(() => {
             this.logger.log('Navigating to: ./home');
             this.router.navigate(['./home']);
           });
