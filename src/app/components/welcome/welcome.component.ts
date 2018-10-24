@@ -87,7 +87,6 @@ export class WelcomeComponent implements OnInit {
           this.router.navigate(['./home']);
         });
       } else {
-        // TODO: Show error toast: File doesn't exists.
         this.settings.removeRecentlyOpenedFile(filePath);
       }
     } else {

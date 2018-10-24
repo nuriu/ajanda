@@ -29,8 +29,6 @@ export class DataService {
     this.schema = new Schema();
   }
 
-  // TODO: REFACTOR loadDatabase and newDatabase to 1 method.
-
   /**
    * Loads database file.
    * @param path Path to database (.ajanda file).
