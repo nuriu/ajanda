@@ -5,7 +5,15 @@ import { ElectronService } from './electron.service';
 
 @Injectable()
 export class LoggerService {
-  constructor(private electron: ElectronService) {}
+  /**
+   * Log level filter.
+   * Used when writing to developer console.
+   */
+  filter: Array<LOG_LEVELS>;
+
+  constructor(private electron: ElectronService) {
+    this.filter = [LOG_LEVELS.INFO, LOG_LEVELS.WARNING, LOG_LEVELS.ERROR];
+  }
 
   /**
    * Logs given message to file.
@@ -23,8 +31,9 @@ export class LoggerService {
       finalMessage += message + '\n';
     }
 
-    // if we aren't in production mode then write message to console as well.
-    if (!AppConfig.production) {
+    // if we aren't in production mode and log level is in the filter
+    // then write message to console as well.
+    if (!AppConfig.production && this.filter.indexOf(level) > -1) {
       switch (level) {
         case LOG_LEVELS.ERROR:
           console.error(finalMessage);

@@ -1,6 +1,12 @@
+Backlog:
+  ☐ Implement toast service. @created(18-10-24 11:32)
+  ☐ Implement weekly column view at homepage. @created(18-10-24 11:33)
+
 Services:
   data.service:
     ✔ REFACTOR: loadDatabase and newDatabase to 1 method. @created(18-10-24 11:25) @started(18-10-24 11:29) @done(18-10-24 11:30) @lasted(1m37s)
+  logger.service:
+    ✔ Add filtering when logging to developer console. @created(18-10-24 11:36) @started(18-10-24 11:36) @done(18-10-24 11:39) @lasted(3m19s)
 
 Components:
   welcome.component:
