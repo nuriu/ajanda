@@ -32,8 +32,8 @@ export class SidenavComponent implements OnInit {
     this.logger.log('SidenavComponent initialized.', LOG_LEVELS.LIFECYCLE);
 
     this.databaseName = this.db.getDatabaseName();
-    this.calendars = this.db.listCalendars();
-    this.tags = this.db.listTags();
+    this.calendars = this.db.getObjectList<Calendar>('calendars');
+    this.tags = this.db.getObjectList<Tag>('tags');
   }
 
   /**

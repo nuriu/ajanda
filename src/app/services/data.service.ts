@@ -80,6 +80,16 @@ export class DataService {
   }
 
   /**
+   * Returns object list from 'key' at database.
+   * @param key Database object key.
+   */
+  getObjectList<T>(key: string): Array<T> {
+    this.logger.log('Requested list of: ' + key + '.');
+
+    return this.db.get(key).value() as Array<T>;
+  }
+
+  /**
    * Adds new calendar to database.
    * @param calendar Calendar object.
    */
@@ -92,15 +102,6 @@ export class DataService {
       .write();
 
     this.logger.log('Created new calendar: ' + JSON.stringify(calendar));
-  }
-
-  /**
-   * Returns list of calendar objects.
-   */
-  listCalendars(): Array<Calendar> {
-    this.logger.log('Requested list of calendars.');
-
-    return this.db.get('calendars').value() as Array<Calendar>;
   }
 
   /**
@@ -158,15 +159,6 @@ export class DataService {
   }
 
   /**
-   * Returns list of tag objects.
-   */
-  listTags(): Array<Tag> {
-    this.logger.log('Requested list of tags.');
-
-    return this.db.get('tags').value() as Array<Tag>;
-  }
-
-  /**
    * Updates tag object with same id.
    * @param tag New tag object with same id.
    */
@@ -188,7 +180,8 @@ export class DataService {
     this.logger.log('Deleted tag: ' + id);
 
     // remove tag from all tasks.
-    const tasks = this.listTasks();
+    const tasks = this.getObjectList<Task>('tasks');
+
     tasks.forEach(task => {
       for (let i = 0; i < task.tags.length; i++) {
         const tagId = task.tags[i];
@@ -239,15 +232,6 @@ export class DataService {
   }
 
   /**
-   * Returns list of task objects.
-   */
-  listTasks(): Array<Task> {
-    this.logger.log('Requested list of tasks.');
-
-    return this.db.get('tasks').value() as Array<Task>;
-  }
-
-  /**
    * Updates task object with same id.
    * @param task New task object with same id.
    */
@@ -269,7 +253,7 @@ export class DataService {
     this.logger.log('Deleted task: ' + id);
 
     // remove task from all calendars.
-    const calendars = this.listCalendars();
+    const calendars = this.getObjectList<Calendar>('calendars');
     calendars.forEach(calendar => {
       for (let i = 0; i < calendar.tasks.length; i++) {
         const taskId = calendar.tasks[i];
