@@ -66,6 +66,22 @@ export class DataService {
   }
 
   /**
+   * Adds non-related object to database inside parentKey.
+   * @param parentKey Object parent key (like table name) where to save the object inside.
+   * @param object Object that will be created.
+   */
+  createObject<T>(parentKey: string, object: T) {
+    object['id'] = generate();
+
+    this.db
+      .get(parentKey)
+      .push(object)
+      .write();
+
+    this.logger.log('Created new object inside ' + parentKey + ': ' + JSON.stringify(object));
+  }
+
+  /**
    * Returns object that has given id inside parentKey from database.
    * @param parentKey Object parent key (like table name) where to look for object.
    * @param id Id of the object.

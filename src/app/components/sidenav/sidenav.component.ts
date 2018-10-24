@@ -58,7 +58,7 @@ export class SidenavComponent implements OnInit {
    */
   handleCalendarAddition(name: string) {
     if (name.trim().length > 0) {
-      this.db.createCalendar(new Calendar({ name: name }));
+      this.db.createObject<Calendar>('calendars', new Calendar({ name: name }));
     }
   }
 
@@ -84,7 +84,7 @@ export class SidenavComponent implements OnInit {
    */
   handleTagAddition(name: string) {
     if (name.trim().length > 0) {
-      this.db.createTag(new Tag({ name: name }));
+      this.db.createObject<Tag>('tags', new Tag({ name: name }));
     }
   }
 
