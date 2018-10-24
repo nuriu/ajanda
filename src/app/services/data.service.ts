@@ -66,6 +66,20 @@ export class DataService {
   }
 
   /**
+   * Returns object that has given id inside parentKey from database.
+   * @param parentKey Object parent key (like table name) where to look for object.
+   * @param id Id of the object.
+   */
+  getObjectWithId<T>(parentKey: string, id: string): T {
+    this.logger.log('Requested object info inside ' + parentKey + ' with id: ' + id);
+
+    return (this.db
+      .get(parentKey)
+      .find({ id: id })
+      .value() as unknown) as T;
+  }
+
+  /**
    * Adds new calendar to database.
    * @param calendar Calendar object.
    */
@@ -78,19 +92,6 @@ export class DataService {
       .write();
 
     this.logger.log('Created new calendar: ' + JSON.stringify(calendar));
-  }
-
-  /**
-   * Get calendar info with given id.
-   * @param id Calendar id.
-   */
-  getCalendar(id: string): Calendar {
-    this.logger.log('Requested calendar info for: ' + id);
-
-    return this.db
-      .get('calendars')
-      .find({ id: id })
-      .value() as Calendar;
   }
 
   /**
@@ -126,7 +127,7 @@ export class DataService {
 
     // if deleTasks set to true, delete all task inside calendar.
     if (deleteTasks) {
-      const taskIds = this.getCalendar(id).tasks;
+      const taskIds = this.getObjectWithId<Calendar>('calendars', id).tasks;
       taskIds.forEach(taskId => {
         this.db
           .get('tasks')
@@ -154,19 +155,6 @@ export class DataService {
       .write();
 
     this.logger.log('Created new tag: ' + JSON.stringify(tag));
-  }
-
-  /**
-   * Get tag info with given id.
-   * @param id Tag id.
-   */
-  getTag(id: string): Tag {
-    this.logger.log('Requested tag info for: ' + id);
-
-    return this.db
-      .get('tags')
-      .find({ id: id })
-      .value() as Tag;
   }
 
   /**
@@ -224,7 +212,7 @@ export class DataService {
    * @param calendarId Task's parent calendar id.
    */
   createTask(task: Task, calendarId: string) {
-    const calendar = this.getCalendar(calendarId);
+    const calendar = this.getObjectWithId<Calendar>('calendars', calendarId);
 
     if (!calendar) {
       this.logger.log(
@@ -248,19 +236,6 @@ export class DataService {
     this.logger.log(
       'Created new task: ' + JSON.stringify(task) + '. Added to calendar: ' + calendarId
     );
-  }
-
-  /**
-   * Get task info with given id.
-   * @param id Task id.
-   */
-  getTask(id: string): Task {
-    this.logger.log('Requested task info for: ' + id);
-
-    return this.db
-      .get('tasks')
-      .find({ id: id })
-      .value() as Task;
   }
 
   /**
