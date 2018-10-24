@@ -63,6 +63,34 @@ export class SidenavComponent implements OnInit {
   }
 
   /**
+   * Handles calendar deletion event.
+   * @param calendar Which calendar to be deleted.
+   */
+  handleCalendarDeletion(calendar: Calendar) {
+    this.logger.log(
+      'Clicked to delete calendar: ' + JSON.stringify(calendar),
+      LOG_LEVELS.EVENT,
+      EVENT_TYPES.CLICK
+    );
+
+    this.db.deleteCalendar(calendar.id, true);
+  }
+
+  /**
+   * Handles tag deletion event.
+   * @param tag Which tag to be deleted.
+   */
+  handleTagDeletion(tag: Tag) {
+    this.logger.log(
+      'Clicked to delete tag: ' + JSON.stringify(tag),
+      LOG_LEVELS.EVENT,
+      EVENT_TYPES.CLICK
+    );
+
+    this.db.deleteTag(tag.id);
+  }
+
+  /**
    * Updates tag selection info.
    * @param tag Selected tag.
    */

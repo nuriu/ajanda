@@ -23,6 +23,7 @@
     <input type="radio" [name]="calendar.id" [checked]="calendar.selected" (click)="handleCalendarSelection(calendar)">
     <i class="form-icon" [style.background]="calendar.selected == true ? calendar.colorCode : null"></i>
     {{ calendar.name }}
+    <i class="icon icon-cross c-hand" (click)="handleCalendarDeletion(calendar)"></i>
   </label>
 </div>
 
@@ -42,5 +43,6 @@
     <input type="radio" [name]="tag.id" [checked]="tag.enabled" (click)="handleTagSelection(tag)">
     <i class="form-icon" [style.background]="tag.enabled == true ? tag.colorCode : null"></i>
     {{ tag.name }}
+    <i class="icon icon-cross c-hand" (click)="handleTagDeletion(tag)"></i>
   </label>
 </div>
