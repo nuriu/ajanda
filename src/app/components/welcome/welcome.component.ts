@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { LOCALES } from '../../models/LOCALES';
+import { Toast, TOAST_TYPES } from '../../models/Toast';
 import { DataService } from '../../services/data.service';
 import { ElectronService } from '../../services/electron.service';
 import {
@@ -10,6 +11,7 @@ import {
   LOG_LEVELS
 } from '../../services/logger.service';
 import { SettingsService } from '../../services/settings.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-welcome',
@@ -36,7 +38,8 @@ export class WelcomeComponent implements OnInit {
     private electron: ElectronService,
     private db: DataService,
     private logger: LoggerService,
-    private settings: SettingsService
+    private settings: SettingsService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit() {
@@ -98,6 +101,13 @@ export class WelcomeComponent implements OnInit {
         });
       } else {
         this.settings.removeRecentlyOpenedFile(filePath);
+
+        this.toastService.publish(
+          new Toast({
+            Message: 'File does not exists at: ' + filePath,
+            Type: TOAST_TYPES.ERROR
+          })
+        );
       }
     } else {
       this.translate
@@ -123,7 +133,13 @@ export class WelcomeComponent implements OnInit {
    * @param event Event object of select value change.
    */
   public handleLocaleChange(event: any) {
-    console.log(event.target.value);
     this.settings.updatePrefferedLocale(event.target.value);
+
+    this.toastService.publish(
+      new Toast({
+        Message: 'App locale changed to: ' + event.target.value,
+        Type: TOAST_TYPES.SUCCESS
+      })
+    );
   }
 }

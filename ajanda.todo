@@ -1,5 +1,6 @@
 Backlog:
   ☐ Implement weekly column view at homepage. @created(18-10-24 11:33)
+  ☐ REFACTOR: enable i18n for toast messages. @created(18-10-25 20:45)
   ✔ Implement toast service. @created(18-10-24 11:32) @started(18-10-25 19:12) @done(18-10-25 19:59) @lasted(47m23s)
 
 Services:
@@ -13,7 +14,8 @@ Components:
   toast.component:
     ✔ REFACTOR: Allow multiple toasts to show up at the same time. @created(18-10-25 20:03) @started(18-10-25 20:04) @done(18-10-25 20:22) @lasted(18m51s)
   welcome.component:
-    ☐ Show error toast: File doesn't exists. [L:90] @created(18-10-24 11:25)
+    ✔ Add toast messages. @created(18-10-25 20:42) @done(18-10-25 20:45)
   sidenav.component:
+    ✔ Add toast messages to events. @created(18-10-25 20:36) @started(18-10-25 20:36) @done(18-10-25 20:41) @lasted(5m41s)
     ✔ Implement calendar removing. @created(18-10-24 15:55) @started(18-10-24 15:55) @done(18-10-24 16:01) @lasted(6m20s)
     ✔ Implement tag removing. @created(18-10-24 15:55) @started(18-10-24 15:55) @done(18-10-24 16:01) @lasted(6m19s)

@@ -62,9 +62,16 @@ export class SidenavComponent implements OnInit {
       EVENT_TYPES.CLICK
     );
 
+    let message = '';
+    if (calendar.selected) {
+      message = 'Calendar selected: ' + calendar.name;
+    } else {
+      message = 'Calendar unselected: ' + calendar.name;
+    }
+
     this.toastService.publish(
       new Toast({
-        Message: 'Calendar selection updated: ' + calendar.name,
+        Message: message,
         Type: TOAST_TYPES.PRIMARY
       })
     );
@@ -75,9 +82,22 @@ export class SidenavComponent implements OnInit {
    * @param name Name for calendar to add.
    */
   public handleCalendarAddition(name: string) {
+    this.logger.log(
+      'Clicked to add calendar with name: ' + name,
+      LOG_LEVELS.EVENT,
+      EVENT_TYPES.CLICK
+    );
+
     if (name.trim().length > 0) {
       this.db.createObject<Calendar>('calendars', new Calendar({ name: name }));
     }
+
+    this.toastService.publish(
+      new Toast({
+        Message: 'Created new calendar: ' + name,
+        Type: TOAST_TYPES.SUCCESS
+      })
+    );
   }
 
   /**
@@ -92,6 +112,13 @@ export class SidenavComponent implements OnInit {
     );
 
     this.db.deleteCalendar(calendar.id, true);
+
+    this.toastService.publish(
+      new Toast({
+        Message: 'Removed calendar: ' + calendar.name,
+        Type: TOAST_TYPES.SUCCESS
+      })
+    );
   }
 
   /**
@@ -106,6 +133,13 @@ export class SidenavComponent implements OnInit {
     );
 
     this.db.deleteTag(tag.id);
+
+    this.toastService.publish(
+      new Toast({
+        Message: 'Removed tag: ' + tag.name,
+        Type: TOAST_TYPES.SUCCESS
+      })
+    );
   }
 
   /**
@@ -122,6 +156,13 @@ export class SidenavComponent implements OnInit {
       LOG_LEVELS.EVENT,
       EVENT_TYPES.CLICK
     );
+
+    this.toastService.publish(
+      new Toast({
+        Message: 'Tag selected: ' + tag.name,
+        Type: TOAST_TYPES.SUCCESS
+      })
+    );
   }
 
   /**
@@ -129,9 +170,22 @@ export class SidenavComponent implements OnInit {
    * @param name Name for tag to add.
    */
   public handleTagAddition(name: string) {
+    this.logger.log(
+      'Clicked to add tag with name: ' + name,
+      LOG_LEVELS.EVENT,
+      EVENT_TYPES.CLICK
+    );
+
     if (name.trim().length > 0) {
       this.db.createObject<Tag>('tags', new Tag({ name: name }));
     }
+
+    this.toastService.publish(
+      new Toast({
+        Message: 'Created new tag with name: ' + name,
+        Type: TOAST_TYPES.SUCCESS
+      })
+    );
   }
 
   /**
