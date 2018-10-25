@@ -14,5 +14,17 @@
   "LOCALES": {
     "EN": "English",
     "TR": "Turkish"
+  },
+  "TOAST_MESSAGES": {
+    "FILE_DOES_NOT_EXISTS": "File doesn't exists at: ",
+    "APP_LOCALE_CHANGED_TO": "Application locale changed to: ",
+    "CREATED_CALENDAR": "Created new calendar named: ",
+    "CREATED_TAG": "Created new tag named: ",
+    "CALENDAR_SELECTED": "Calendar selected: ",
+    "CALENDAR_UNSELECTED": "Calendar unselected: ",
+    "REMOVED_CALENDAR": "Removed calendar: ",
+    "REMOVED_TAG": "Removed tag: ",
+    "TAG_ENABLED": "Enabled tag: ",
+    "TAG_UNENABLED": "Unenabled tag: "
   }
 }

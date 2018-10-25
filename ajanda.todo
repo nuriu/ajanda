@@ -1,6 +1,6 @@
 Backlog:
   ☐ Implement weekly column view at homepage. @created(18-10-24 11:33)
-  ☐ REFACTOR: enable i18n for toast messages. @created(18-10-25 20:45)
+  ✔ REFACTOR: enable i18n for toast messages. @created(18-10-25 20:45) @started(18-10-25 21:08) @done(18-10-25 21:19) @lasted(11m21s)
   ✔ Implement toast service. @created(18-10-24 11:32) @started(18-10-25 19:12) @done(18-10-25 19:59) @lasted(47m23s)
 
 Services:

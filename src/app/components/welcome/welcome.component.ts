@@ -104,9 +104,10 @@ export class WelcomeComponent implements OnInit {
 
         this.toastService.publish(
           new Toast({
-            Message: 'File does not exists at: ' + filePath,
+            Message: 'TRANSLATED-MESSAGE' + filePath,
             Type: TOAST_TYPES.ERROR
-          })
+          }),
+          'TOAST_MESSAGES.FILE_DOES_NOT_EXISTS'
         );
       }
     } else {
@@ -137,9 +138,10 @@ export class WelcomeComponent implements OnInit {
 
     this.toastService.publish(
       new Toast({
-        Message: 'App locale changed to: ' + event.target.value,
+        Message: 'TRANSLATED-MESSAGE' + event.target.value,
         Type: TOAST_TYPES.SUCCESS
-      })
+      }),
+      'TOAST_MESSAGES.APP_LOCALE_CHANGED_TO'
     );
   }
 }

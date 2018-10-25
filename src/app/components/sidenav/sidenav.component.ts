@@ -62,18 +62,19 @@ export class SidenavComponent implements OnInit {
       EVENT_TYPES.CLICK
     );
 
-    let message = '';
+    let translateKey = '';
     if (calendar.selected) {
-      message = 'Calendar selected: ' + calendar.name;
+      translateKey = 'TOAST_MESSAGES.CALENDAR_SELECTED';
     } else {
-      message = 'Calendar unselected: ' + calendar.name;
+      translateKey = 'TOAST_MESSAGES.CALENDAR_UNSELECTED';
     }
 
     this.toastService.publish(
       new Toast({
-        Message: message,
+        Message: 'TRANSLATED-MESSAGE' + calendar.name,
         Type: TOAST_TYPES.PRIMARY
-      })
+      }),
+      translateKey
     );
   }
 
@@ -94,9 +95,10 @@ export class SidenavComponent implements OnInit {
 
     this.toastService.publish(
       new Toast({
-        Message: 'Created new calendar: ' + name,
+        Message: 'TRANSLATED-MESSAGE' + name,
         Type: TOAST_TYPES.SUCCESS
-      })
+      }),
+      'TOAST_MESSAGES.CREATED_CALENDAR'
     );
   }
 
@@ -115,9 +117,10 @@ export class SidenavComponent implements OnInit {
 
     this.toastService.publish(
       new Toast({
-        Message: 'Removed calendar: ' + calendar.name,
+        Message: 'TRANSLATED-MESSAGE' + calendar.name,
         Type: TOAST_TYPES.SUCCESS
-      })
+      }),
+      'TOAST_MESSAGES.REMOVED_CALENDAR'
     );
   }
 
@@ -136,9 +139,10 @@ export class SidenavComponent implements OnInit {
 
     this.toastService.publish(
       new Toast({
-        Message: 'Removed tag: ' + tag.name,
+        Message: 'TRANSLATED-MESSAGE' + tag.name,
         Type: TOAST_TYPES.SUCCESS
-      })
+      }),
+      'TOAST_MESSAGES.REMOVED_TAG'
     );
   }
 
@@ -157,11 +161,19 @@ export class SidenavComponent implements OnInit {
       EVENT_TYPES.CLICK
     );
 
+    let translateKey = '';
+    if (tag.enabled) {
+      translateKey = 'TOAST_MESSAGES.TAG_ENABLED';
+    } else {
+      translateKey = 'TOAST_MESSAGES.TAG_UNENABLED';
+    }
+
     this.toastService.publish(
       new Toast({
-        Message: 'Tag selected: ' + tag.name,
-        Type: TOAST_TYPES.SUCCESS
-      })
+        Message: 'TRANSLATED-MESSAGE' + tag.name,
+        Type: TOAST_TYPES.PRIMARY
+      }),
+      translateKey
     );
   }
 
@@ -182,9 +194,10 @@ export class SidenavComponent implements OnInit {
 
     this.toastService.publish(
       new Toast({
-        Message: 'Created new tag with name: ' + name,
+        Message: 'TRANSLATED-MESSAGE' + name,
         Type: TOAST_TYPES.SUCCESS
-      })
+      }),
+      'TOAST_MESSAGES.CREATED_TAG'
     );
   }
 
