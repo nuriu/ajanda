@@ -11,12 +11,13 @@
 
   <div class="calendar-container">
     <div class="calendar-header">
-      <div *ngFor="let i of [0,1,2,3,4,5,6]" class="calendar-date">{{ getDayName(i) }}</div>
+      <div *ngFor="let i of [0,1,2,3,4,5,6]" class="calendar-date">{{
+        getDayName(i) }}</div>
     </div>
 
     <div class="calendar-body">
-      <div *ngFor="let d of days; let i = index" class="calendar-date" [class.prev-month]="i < printedDaysFromPrevMonth"
-        [class.next-month]="i >= printedDaysFromPrevMonth + daysInMonth">
+      <div *ngFor="let d of days; let i = index" class="calendar-date"
+        [class.prev-month]="i < printedDaysFromPrevMonth" [class.next-month]="i >= printedDaysFromPrevMonth + daysInMonth">
         <button class="date-item" [class.date-today]="d == currentDay">{{ d }}</button>
       </div>
     </div>

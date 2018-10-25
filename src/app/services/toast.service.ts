@@ -8,7 +8,7 @@ export class ToastService {
 
   public event: Observable<Toast>;
 
-  constructor() {
+  public constructor() {
     this.subject = new Subject<Toast>();
     this.event = this.subject.asObservable();
   }

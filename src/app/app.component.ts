@@ -11,7 +11,7 @@ import { SettingsService } from './services/settings.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(
+  public constructor(
     public electronService: ElectronService,
     private translate: TranslateService,
     private logger: LoggerService,

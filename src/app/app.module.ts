@@ -13,13 +13,13 @@ import { AppComponent } from './app.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { HomeComponent } from './components/home/home.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { ToastComponent } from './components/toast/toast.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { DataService } from './services/data.service';
 import { ElectronService } from './services/electron.service';
 import { LoggerService } from './services/logger.service';
 import { SettingsService } from './services/settings.service';
 import { ToastService } from './services/toast.service';
-import { ToastComponent } from './components/toast/toast.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -48,7 +48,13 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [LoggerService, ElectronService, DataService, SettingsService, ToastService],
+  providers: [
+    LoggerService,
+    ElectronService,
+    DataService,
+    SettingsService,
+    ToastService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -10,11 +10,11 @@ import { ToastService } from '../../services/toast.service';
   styleUrls: ['./toast.component.scss']
 })
 export class ToastComponent implements OnInit, OnDestroy {
-  toasts: Array<Toast>;
+  public toasts: Array<Toast>;
 
   private subscription: Subscription;
 
-  constructor(
+  public constructor(
     private toastService: ToastService,
     private logger: LoggerService
   ) {

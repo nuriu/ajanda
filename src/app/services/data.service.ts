@@ -25,7 +25,10 @@ export class DataService {
    */
   private schema: Schema;
 
-  constructor(private logger: LoggerService, private settings: SettingsService) {
+  public constructor(
+    private logger: LoggerService,
+    private settings: SettingsService
+  ) {
     this.schema = new Schema();
   }
 
@@ -34,7 +37,7 @@ export class DataService {
    * @param path Path to database (.ajanda file).
    * @param isNew Database is creating or loading existing one.
    */
-  async loadDatabase(path: string, isNew: boolean = false) {
+  public async loadDatabase(path: string, isNew: boolean = false) {
     this.adapter = new FileAsync(path);
     this.db = await low(this.adapter);
     this.db.defaults(JSON.parse(JSON.stringify(this.schema))).write();
@@ -59,7 +62,7 @@ export class DataService {
   /**
    * Returns name of the database.
    */
-  getDatabaseName() {
+  public getDatabaseName() {
     this.logger.log('Requested database name info.');
 
     return this.db.get('name').value();
@@ -70,7 +73,7 @@ export class DataService {
    * @param parentKey Object parent key (like table name) where to save the object inside.
    * @param object Object that will be created.
    */
-  createObject<T>(parentKey: string, object: T) {
+  public createObject<T>(parentKey: string, object: T) {
     object['id'] = generate();
 
     this.db
@@ -78,7 +81,9 @@ export class DataService {
       .push(object)
       .write();
 
-    this.logger.log('Created new object inside ' + parentKey + ': ' + JSON.stringify(object));
+    this.logger.log(
+      'Created new object inside ' + parentKey + ': ' + JSON.stringify(object)
+    );
   }
 
   /**
@@ -86,8 +91,10 @@ export class DataService {
    * @param parentKey Object parent key (like table name) where to look for object.
    * @param id Id of the object.
    */
-  getObjectWithId<T>(parentKey: string, id: string): T {
-    this.logger.log('Requested object info inside ' + parentKey + ' with id: ' + id);
+  public getObjectWithId<T>(parentKey: string, id: string): T {
+    this.logger.log(
+      'Requested object info inside ' + parentKey + ' with id: ' + id
+    );
 
     return (this.db
       .get(parentKey)
@@ -99,7 +106,7 @@ export class DataService {
    * Returns object list from 'key' at database.
    * @param key Database object key.
    */
-  getObjectList<T>(key: string): Array<T> {
+  public getObjectList<T>(key: string): Array<T> {
     this.logger.log('Requested list of: ' + key + '.');
 
     return this.db.get(key).value() as Array<T>;
@@ -110,8 +117,13 @@ export class DataService {
    * @param parentKey Object parent key (like table name) where to look for object.
    * @param updatedObject New object to swap with the old one.
    */
-  updateObject<T>(parentKey: string, updatedObject: T) {
-    this.logger.log('Updated object info in ' + parentKey + ' for object: ' + updatedObject['id']);
+  public updateObject<T>(parentKey: string, updatedObject: T) {
+    this.logger.log(
+      'Updated object info in ' +
+        parentKey +
+        ' for object: ' +
+        updatedObject['id']
+    );
 
     this.db
       .get(parentKey)
@@ -124,7 +136,7 @@ export class DataService {
    * Adds new calendar to database.
    * @param calendar Calendar object.
    */
-  createCalendar(calendar: Calendar) {
+  public createCalendar(calendar: Calendar) {
     calendar.id = generate();
 
     this.db
@@ -140,7 +152,7 @@ export class DataService {
    * @param id Calendar id.
    * @param deleteTasks Delete tasks inside the calendar too?
    */
-  deleteCalendar(id: string, deleteTasks: boolean) {
+  public deleteCalendar(id: string, deleteTasks: boolean) {
     this.logger.log('Deleted calendar: ' + id);
 
     // if deleTasks set to true, delete all task inside calendar.
@@ -164,7 +176,7 @@ export class DataService {
    * Adds new tag to database.
    * @param tag Tag object.
    */
-  createTag(tag: Tag) {
+  public createTag(tag: Tag) {
     tag.id = generate();
 
     this.db
@@ -179,7 +191,7 @@ export class DataService {
    * Deletes tag from database.
    * @param id Tag id.
    */
-  deleteTag(id: string) {
+  public deleteTag(id: string) {
     this.logger.log('Deleted tag: ' + id);
 
     // remove tag from all tasks.
@@ -207,7 +219,7 @@ export class DataService {
    * @param task Task object.
    * @param calendarId Task's parent calendar id.
    */
-  createTask(task: Task, calendarId: string) {
+  public createTask(task: Task, calendarId: string) {
     const calendar = this.getObjectWithId<Calendar>('calendars', calendarId);
 
     if (!calendar) {
@@ -230,7 +242,10 @@ export class DataService {
     this.updateObject<Calendar>('calendars', calendar);
 
     this.logger.log(
-      'Created new task: ' + JSON.stringify(task) + '. Added to calendar: ' + calendarId
+      'Created new task: ' +
+        JSON.stringify(task) +
+        '. Added to calendar: ' +
+        calendarId
     );
   }
 
@@ -238,7 +253,7 @@ export class DataService {
    * Deletes task from database.
    * @param id Task id.
    */
-  deleteTask(id: string) {
+  public deleteTask(id: string) {
     this.logger.log('Deleted task: ' + id);
 
     // remove task from all calendars.
@@ -248,7 +263,9 @@ export class DataService {
         const taskId = calendar.tasks[i];
         if (taskId === id) {
           calendar.tasks.splice(i, 1);
-          this.logger.log('Removed task: ' + id + ' from calendar: ' + calendar.id);
+          this.logger.log(
+            'Removed task: ' + id + ' from calendar: ' + calendar.id
+          );
           this.updateObject<Calendar>('calendars', calendar);
         }
       }

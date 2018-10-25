@@ -2,8 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Calendar } from '../../models/Calendar';
 import { Tag } from '../../models/Tag';
+import { Toast, TOAST_TYPES } from '../../models/Toast';
 import { DataService } from '../../services/data.service';
-import { EVENT_TYPES, LoggerService, LOG_LEVELS } from '../../services/logger.service';
+import {
+  EVENT_TYPES,
+  LoggerService,
+  LOG_LEVELS
+} from '../../services/logger.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -14,17 +20,22 @@ export class SidenavComponent implements OnInit {
   /**
    * Name of the database.
    */
-  databaseName: string;
+  public databaseName: string;
   /**
    * List of calendars.
    */
-  calendars: Array<Calendar>;
+  public calendars: Array<Calendar>;
   /**
    * List of tags.
    */
-  tags: Array<Tag>;
+  public tags: Array<Tag>;
 
-  constructor(private router: Router, private db: DataService, private logger: LoggerService) {
+  public constructor(
+    private router: Router,
+    private db: DataService,
+    private logger: LoggerService,
+    private toastService: ToastService
+  ) {
     this.calendars = new Array<Calendar>();
   }
 
@@ -40,7 +51,7 @@ export class SidenavComponent implements OnInit {
    * Updates calendar selection info.
    * @param calendar Selected calendar.
    */
-  handleCalendarSelection(calendar: Calendar) {
+  public handleCalendarSelection(calendar: Calendar) {
     calendar.selected = !calendar.selected;
 
     this.db.updateObject<Calendar>('calendars', calendar);
@@ -50,13 +61,20 @@ export class SidenavComponent implements OnInit {
       LOG_LEVELS.EVENT,
       EVENT_TYPES.CLICK
     );
+
+    this.toastService.publish(
+      new Toast({
+        Message: 'Calendar selection updated: ' + calendar.name,
+        Type: TOAST_TYPES.PRIMARY
+      })
+    );
   }
 
   /**
    * Handles new calendar addition.
    * @param name Name for calendar to add.
    */
-  handleCalendarAddition(name: string) {
+  public handleCalendarAddition(name: string) {
     if (name.trim().length > 0) {
       this.db.createObject<Calendar>('calendars', new Calendar({ name: name }));
     }
@@ -66,7 +84,7 @@ export class SidenavComponent implements OnInit {
    * Handles calendar deletion event.
    * @param calendar Which calendar to be deleted.
    */
-  handleCalendarDeletion(calendar: Calendar) {
+  public handleCalendarDeletion(calendar: Calendar) {
     this.logger.log(
       'Clicked to delete calendar: ' + JSON.stringify(calendar),
       LOG_LEVELS.EVENT,
@@ -80,7 +98,7 @@ export class SidenavComponent implements OnInit {
    * Handles tag deletion event.
    * @param tag Which tag to be deleted.
    */
-  handleTagDeletion(tag: Tag) {
+  public handleTagDeletion(tag: Tag) {
     this.logger.log(
       'Clicked to delete tag: ' + JSON.stringify(tag),
       LOG_LEVELS.EVENT,
@@ -94,7 +112,7 @@ export class SidenavComponent implements OnInit {
    * Updates tag selection info.
    * @param tag Selected tag.
    */
-  handleTagSelection(tag: Tag) {
+  public handleTagSelection(tag: Tag) {
     tag.enabled = !tag.enabled;
 
     this.db.updateObject<Tag>('tags', tag);
@@ -110,7 +128,7 @@ export class SidenavComponent implements OnInit {
    * Handles new tag addition.
    * @param name Name for tag to add.
    */
-  handleTagAddition(name: string) {
+  public handleTagAddition(name: string) {
     if (name.trim().length > 0) {
       this.db.createObject<Tag>('tags', new Tag({ name: name }));
     }
@@ -119,7 +137,7 @@ export class SidenavComponent implements OnInit {
   /**
    * Moves to welcome page.
    */
-  closeFile() {
+  public closeFile() {
     this.logger.log('Navigating to: ./welcome');
     this.router.navigate(['./welcome']);
   }

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { EVENT_TYPES, LoggerService, LOG_LEVELS } from '../../services/logger.service';
+import {
+  EVENT_TYPES,
+  LoggerService,
+  LOG_LEVELS
+} from '../../services/logger.service';
 
 @Component({
   selector: 'app-sidenav-calendar',
@@ -8,15 +12,15 @@ import { EVENT_TYPES, LoggerService, LOG_LEVELS } from '../../services/logger.se
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
-  M: moment.Moment;
-  daysInMonth: number;
-  days: Array<number>;
-  maxPresentableDayCount: number; // maximum 6 weeks of days can be displayed.
-  printedDaysFromPrevMonth: number;
-  printedDaysFromNextMonth: number;
-  currentDay: number;
+  public M: moment.Moment;
+  public daysInMonth: number;
+  public days: Array<number>;
+  public maxPresentableDayCount: number;
+  public printedDaysFromPrevMonth: number;
+  public printedDaysFromNextMonth: number;
+  public currentDay: number;
 
-  constructor(private logger: LoggerService) {}
+  public constructor(private logger: LoggerService) {}
 
   ngOnInit() {
     this.logger.log('CalendarComponent initialized.', LOG_LEVELS.LIFECYCLE);
@@ -31,7 +35,7 @@ export class CalendarComponent implements OnInit {
    * Fills 'days' array with numbers of the days [1, ..., 28, 29, 30, 31 etc.]
    * to present which depends on selection.
    */
-  fillDayArray() {
+  public fillDayArray() {
     this.printedDaysFromPrevMonth = 0;
     this.printedDaysFromNextMonth = 0;
     this.days = new Array<number>();
@@ -95,15 +99,19 @@ export class CalendarComponent implements OnInit {
    * @param i Index of day [0, 6].
    * @param format Returning format for moment.
    */
-  getDayName(i: number, format: string = 'ddd'): string {
+  public getDayName(i: number, format: string = 'ddd'): string {
     return this.M.weekday(i).format(format);
   }
 
   /**
    * Presents previous month.
    */
-  prevMonth() {
-    this.logger.log('Switched to previous month.', LOG_LEVELS.EVENT, EVENT_TYPES.MONTH_SWITCH);
+  public prevMonth() {
+    this.logger.log(
+      'Switched to previous month.',
+      LOG_LEVELS.EVENT,
+      EVENT_TYPES.MONTH_SWITCH
+    );
 
     this.M = this.M.startOf('M');
     this.M = this.M.subtract(1, 'M');
@@ -115,8 +123,12 @@ export class CalendarComponent implements OnInit {
   /**
    * Presents next month.
    */
-  nextMonth() {
-    this.logger.log('Switched to next month.', LOG_LEVELS.EVENT, EVENT_TYPES.MONTH_SWITCH);
+  public nextMonth() {
+    this.logger.log(
+      'Switched to next month.',
+      LOG_LEVELS.EVENT,
+      EVENT_TYPES.MONTH_SWITCH
+    );
 
     this.M = this.M.startOf('M');
     this.M = this.M.add(1, 'M');
@@ -130,10 +142,13 @@ export class CalendarComponent implements OnInit {
    * If it exists in current presented month,
    * we should present it with adding a css class. (date-today)
    */
-  checkCurrentDay() {
+  public checkCurrentDay() {
     this.logger.log('Checking if current day exists in the selected month.');
 
-    if (moment().year() === this.M.year() && moment().month() === this.M.month()) {
+    if (
+      moment().year() === this.M.year() &&
+      moment().month() === this.M.month()
+    ) {
       this.logger.log('Current day exists in the selected month.');
       this.M = moment();
       this.currentDay = this.M.date();

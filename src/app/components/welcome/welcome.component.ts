@@ -4,7 +4,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { LOCALES } from '../../models/LOCALES';
 import { DataService } from '../../services/data.service';
 import { ElectronService } from '../../services/electron.service';
-import { EVENT_TYPES, LoggerService, LOG_LEVELS } from '../../services/logger.service';
+import {
+  EVENT_TYPES,
+  LoggerService,
+  LOG_LEVELS
+} from '../../services/logger.service';
 import { SettingsService } from '../../services/settings.service';
 
 @Component({
@@ -40,7 +44,9 @@ export class WelcomeComponent implements OnInit {
 
     // Get recently opened files.
     this.settings.loadDatabase().then(() => {
-      this.recentlyOpenedFiles = this.settings.listRecentlyOpenedFiles().reverse();
+      this.recentlyOpenedFiles = this.settings
+        .listRecentlyOpenedFiles()
+        .reverse();
       this.defaultLocale = this.settings.getPrefferedLocale();
       this.supportedLocales = LOCALES;
     });
@@ -49,7 +55,7 @@ export class WelcomeComponent implements OnInit {
   /**
    * Create new database file.
    */
-  newDataFile() {
+  public newDataFile() {
     this.logger.log(
       'Create new data file button at welcome page.',
       LOG_LEVELS.EVENT,
@@ -77,8 +83,12 @@ export class WelcomeComponent implements OnInit {
    * Load database from file.
    * @param filePath Path of database file.
    */
-  loadDataFile(filePath?: string) {
-    this.logger.log('Load data file button at welcome page.', LOG_LEVELS.EVENT, EVENT_TYPES.CLICK);
+  public loadDataFile(filePath?: string) {
+    this.logger.log(
+      'Load data file button at welcome page.',
+      LOG_LEVELS.EVENT,
+      EVENT_TYPES.CLICK
+    );
 
     if (filePath) {
       if (this.electron.isPathExists(filePath)) {
@@ -112,7 +122,7 @@ export class WelcomeComponent implements OnInit {
    * Handles locale change from language selection.
    * @param event Event object of select value change.
    */
-  handleLocaleChange(event: any) {
+  public handleLocaleChange(event: any) {
     console.log(event.target.value);
     this.settings.updatePrefferedLocale(event.target.value);
   }

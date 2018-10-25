@@ -9,9 +9,9 @@ export class LoggerService {
    * Log level filter.
    * Used when writing to developer console.
    */
-  filter: Array<LOG_LEVELS>;
+  public filter: Array<LOG_LEVELS>;
 
-  constructor(private electron: ElectronService) {
+  public constructor(private electron: ElectronService) {
     this.filter = [LOG_LEVELS.INFO, LOG_LEVELS.WARNING, LOG_LEVELS.ERROR];
   }
 
@@ -20,7 +20,11 @@ export class LoggerService {
    * @param message Message to log.
    * @param level Log level. [LIFECYCLE, EVENT, INFO, WARNING, ERROR]
    */
-  log(message: string, level: LOG_LEVELS = LOG_LEVELS.INFO, eventType?: EVENT_TYPES) {
+  public log(
+    message: string,
+    level: LOG_LEVELS = LOG_LEVELS.INFO,
+    eventType?: EVENT_TYPES
+  ) {
     const filePath = './LOGS/' + moment().format('D-M-YYYY') + '.log';
 
     let finalMessage = moment().toISOString() + '\t|\t' + level + '\t|\t';
@@ -61,7 +65,7 @@ export class LoggerService {
   /**
    * Removes log files from disk.
    */
-  clearLogFolder() {
+  public clearLogFolder() {
     if (this.electron.isPathExists('./LOGS/')) {
       this.electron.clearFolder('./LOGS/');
     }

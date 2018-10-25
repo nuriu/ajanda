@@ -5,13 +5,13 @@ import * as fs from 'fs';
 
 @Injectable()
 export class ElectronService {
-  ipcRenderer: typeof ipcRenderer;
-  webFrame: typeof webFrame;
-  remote: typeof remote;
-  childProcess: typeof childProcess;
-  fs: typeof fs;
+  public ipcRenderer: typeof ipcRenderer;
+  public webFrame: typeof webFrame;
+  public remote: typeof remote;
+  public childProcess: typeof childProcess;
+  public fs: typeof fs;
 
-  constructor() {
+  public constructor() {
     // Conditional imports
     if (this.isElectron()) {
       this.ipcRenderer = window.require('electron').ipcRenderer;
@@ -23,7 +23,7 @@ export class ElectronService {
     }
   }
 
-  isElectron(): boolean {
+  public isElectron(): boolean {
     return window && window.process && window.process.type;
   }
 
@@ -31,9 +31,13 @@ export class ElectronService {
    * Shows open file dialog for database file loading purposes.
    * @param title Dialog title.
    * @param extensions Supported extensions.
-   * @param extensionText Extension box description text. i.e. Ajanda files (*.ajanda)
+   * @param extensionText Extension description text. i.e. Text files (*.txt)
    */
-  showOpenDBDialog(title: string, extensions: string[], extensionText: string): Array<string> {
+  public showOpenDBDialog(
+    title: string,
+    extensions: string[],
+    extensionText: string
+  ): Array<string> {
     if (this.isElectron()) {
       return this.remote.dialog.showOpenDialog({
         title: title,
@@ -52,9 +56,13 @@ export class ElectronService {
    * Shows save file dialog for database file saving purposes.
    * @param title Dialog title.
    * @param extensions Supported extensions.
-   * @param extensionText Extension box description text. i.e. Ajanda files (*.ajanda)
+   * @param extensionText Extension description text. i.e. Text files (*.txt)
    */
-  showSaveDBDialog(title: string, extensions: string[], extensionText: string): string {
+  public showSaveDBDialog(
+    title: string,
+    extensions: string[],
+    extensionText: string
+  ): string {
     if (this.isElectron()) {
       return this.remote.dialog.showSaveDialog({
         title: title,
@@ -72,7 +80,7 @@ export class ElectronService {
    * Check if file or folder at path is exists or not.
    * @param path Path to check.
    */
-  isPathExists(path: string): boolean {
+  public isPathExists(path: string): boolean {
     return this.fs.existsSync(path);
   }
 
@@ -80,7 +88,7 @@ export class ElectronService {
    * Creates folder at given path.
    * @param path Folder path.
    */
-  createFolder(path: string) {
+  public createFolder(path: string) {
     try {
       this.fs.mkdirSync(path);
     } catch (err) {
@@ -94,7 +102,7 @@ export class ElectronService {
    * Clear folder contents at given path.
    * @param path Folder path.
    */
-  clearFolder(path: string) {
+  public clearFolder(path: string) {
     try {
       fs.readdir(path, (err, files) => {
         if (!err) {
@@ -113,7 +121,7 @@ export class ElectronService {
    * @param filePath File path.
    * @param data Data to write.
    */
-  writeDataToFile(filePath: string, data: any) {
+  public writeDataToFile(filePath: string, data: any) {
     this.fs.appendFileSync(filePath, data);
   }
 }

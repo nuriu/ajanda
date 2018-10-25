@@ -4,10 +4,13 @@
   <h1 class="flex-centered logo">AJANDA</h1>
   <div class="tile-centered columns">
     <div class="column">
-      <button class="btn btn-lg btn-link d-block" (click)="newDataFile()">{{ 'NEW_DATA_FILE' | translate }}</button>
-      <button class="btn btn-lg btn-link d-block" (click)="loadDataFile()">{{ 'OPEN_DATA_FILE' | translate }}</button>
+      <button class="btn btn-lg btn-link d-block" (click)="newDataFile()">{{
+        'NEW_DATA_FILE' | translate }}</button>
+      <button class="btn btn-lg btn-link d-block" (click)="loadDataFile()">{{
+        'OPEN_DATA_FILE' | translate }}</button>
       <h6>{{ 'RECENTLY_OPENED_FILES' | translate }}</h6>
-      <button *ngFor="let file of recentlyOpenedFiles" class="btn btn-lg btn-link d-block" (click)="loadDataFile(file)">
+      <button *ngFor="let file of recentlyOpenedFiles" class="btn btn-lg btn-link d-block"
+        (click)="loadDataFile(file)">
         {{ file }}
       </button>
     </div>
@@ -17,7 +20,8 @@
       <div class="form-group">
         <select class="form-select" (change)="handleLocaleChange($event)">
           <option disabled="disabled">{{ 'LANGUAGE' | translate }}</option>
-          <option *ngFor="let locale of supportedLocales" [value]="locale" [attr.selected]="locale == defaultLocale ? 'selected' : null">
+          <option *ngFor="let locale of supportedLocales" [value]="locale"
+            [attr.selected]="locale == defaultLocale ? 'selected' : null">
             {{ 'LOCALES.' + locale.toUpperCase() | translate }}
           </option>
         </select>

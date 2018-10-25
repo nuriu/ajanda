@@ -22,7 +22,10 @@ export class SettingsService {
    */
   private schema: SettingsSchema;
 
-  constructor(private translate: TranslateService, private logger: LoggerService) {
+  public constructor(
+    private translate: TranslateService,
+    private logger: LoggerService
+  ) {
     this.schema = new SettingsSchema();
   }
 
@@ -44,7 +47,7 @@ export class SettingsService {
   /**
    * Returns list of the recently opened file paths.
    */
-  listRecentlyOpenedFiles(): Array<string> {
+  public listRecentlyOpenedFiles(): Array<string> {
     this.logger.log('Requested list of recently opened file paths.');
     return this.db.get('recentlyOpenedFiles').value() as Array<string>;
   }
@@ -52,7 +55,7 @@ export class SettingsService {
   /**
    * Returns previously saved app locale.
    */
-  getPrefferedLocale(): string {
+  public getPrefferedLocale(): string {
     this.logger.log('Requested preffered app locale info.');
     return this.db.get('locale').value() as string;
   }
@@ -61,7 +64,7 @@ export class SettingsService {
    * Updates preffered app locale.
    * @param locale New locale to set.
    */
-  updatePrefferedLocale(locale: string) {
+  public updatePrefferedLocale(locale: string) {
     this.logger.log('Updated app locale to: ' + locale);
 
     this.db
@@ -76,7 +79,7 @@ export class SettingsService {
   /**
    * Updates runtime locales.
    */
-  updateRuntimeLocale() {
+  public updateRuntimeLocale() {
     const prefferedLocale = this.getPrefferedLocale();
 
     // if locale is supported set it.
@@ -100,7 +103,7 @@ export class SettingsService {
    * Add file path to recentlyOpenedFiles array at settings file.
    * @param path File path.
    */
-  addRecentlyOpenedFile(path: string) {
+  public addRecentlyOpenedFile(path: string) {
     const recentlyOpenedFiles = this.listRecentlyOpenedFiles();
 
     // if file already existsin array then first delete it.
@@ -133,7 +136,7 @@ export class SettingsService {
    * Removes path from recentlyOpenedFiles at settings.
    * @param path File path to remove.
    */
-  removeRecentlyOpenedFile(path: string) {
+  public removeRecentlyOpenedFile(path: string) {
     const records = this.listRecentlyOpenedFiles();
 
     for (let i = 0; i < records.length; i++) {

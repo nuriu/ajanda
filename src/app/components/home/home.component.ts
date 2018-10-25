@@ -8,7 +8,7 @@ import { LoggerService, LOG_LEVELS } from '../../services/logger.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(private db: DataService, private logger: LoggerService) {}
+  public constructor(private db: DataService, private logger: LoggerService) {}
 
   ngOnInit() {
     this.logger.log('HomeComponent initialized.', LOG_LEVELS.LIFECYCLE);
