@@ -1,5 +1,8 @@
-<div class="toast" [class.toast-primary]="type == 'PRIMARY'" [class.toast-success]="type == 'SUCCESS'"
-  [class.toast-warning]="type == 'WARNING'" [class.toast-error]="type == 'ERROR'" [class.d-invisible]="!visible">
-  <button class="btn btn-clear float-right" (click)="visible = false"></button>
-  {{ message }}
+<div class="toast-column">
+  <div *ngFor="let toast of toasts" class="toast" [class.toast-primary]="toast.Type == 'PRIMARY'"
+    [class.toast-success]="toast.Type == 'SUCCESS'" [class.toast-warning]="toast.Type == 'WARNING'"
+    [class.toast-error]="toast.Type == 'ERROR'" [class.d-invisible]="!toast.Visible">
+    <button class="btn btn-clear float-right" (click)="toast.Visible = false"></button>
+    {{ toast.Message }}
+  </div>
 </div>

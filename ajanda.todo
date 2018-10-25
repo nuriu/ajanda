@@ -10,6 +10,8 @@ Services:
     ✔ Add filtering when logging to developer console. @created(18-10-24 11:36) @started(18-10-24 11:36) @done(18-10-24 11:39) @lasted(3m19s)
 
 Components:
+  toast.component:
+    ✔ REFACTOR: Allow multiple toasts to show up at the same time. @created(18-10-25 20:03) @started(18-10-25 20:04) @done(18-10-25 20:22) @lasted(18m51s)
   welcome.component:
     ☐ Show error toast: File doesn't exists. [L:90] @created(18-10-24 11:25)
   sidenav.component:

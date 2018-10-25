@@ -1,8 +1,12 @@
-div.toast {
+.toast-column {
   position: fixed;
   z-index: 999;
   min-width: 5rem;
   max-width: 25rem;
-  right: 1rem;
+  right: 2rem;
   bottom: 1rem;
+
+  .toast {
+    margin-bottom: 1rem;
+  }
 }
