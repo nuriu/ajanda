@@ -70,7 +70,7 @@ export class DataService {
 
   /**
    * Adds non-related object to database inside parentKey.
-   * @param parentKey Object parent key (like table name) where to save the object inside.
+   * @param parentKey Parent key (table name) where to save the object inside.
    * @param object Object that will be created.
    */
   public createObject<T>(parentKey: string, object: T) {
@@ -88,7 +88,7 @@ export class DataService {
 
   /**
    * Returns object that has given id inside parentKey from database.
-   * @param parentKey Object parent key (like table name) where to look for object.
+   * @param parentKey Parent key (like table name) where to look for object.
    * @param id Id of the object.
    */
   public getObjectWithId<T>(parentKey: string, id: string): T {
@@ -114,7 +114,7 @@ export class DataService {
 
   /**
    * Updates object at database.
-   * @param parentKey Object parent key (like table name) where to look for object.
+   * @param parentKey Parent key (like table name) where to look for object.
    * @param updatedObject New object to swap with the old one.
    */
   public updateObject<T>(parentKey: string, updatedObject: T) {
