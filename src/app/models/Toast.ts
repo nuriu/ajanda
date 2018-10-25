@@ -1,8 +1,11 @@
 export class Toast {
   public Message: string;
   public Type: TOAST_TYPES;
+  public Duration: number;
 
   public constructor(init?: Partial<Toast>) {
+    this.Duration = 2000;
+
     if (init) {
       Object.assign(this, init);
     }
